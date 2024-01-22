@@ -188,19 +188,19 @@ module.exports = async function () {
         "name": "Karlsruhe",
     })
     await City.create({
-        "_id": "65343222b67e9685f937f216",
+        "_id": "65343222b67e9685f937f217",
         "name": "Nürnberg",
     })
     await City.create({
-        "_id": "65343222b67e9685f937f217",
+        "_id": "65343222b67e9685f937f218",
         "name": "Freiburg",
     })
     await City.create({
-        "_id": "65343222b67e9685f937f218",
+        "_id": "65343222b67e9685f937f219",
         "name": "Trier",
     })
     await City.create({
-        "_id": "65343222b67e9685f937f219",
+        "_id": "65343222b67e9685f937f220",
         "name": "Erfurt",
     })
 

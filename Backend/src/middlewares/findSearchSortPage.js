@@ -18,8 +18,6 @@ module.exports = (req, res, next) => {
         }
       }
 
-      console.log("Search  middleware kullanildi")
-
     /* Alternative Searching: *
     let where = [];
     for (let key in search) where.push(`this.${key}.toString().includes('${search[key]}')`)
