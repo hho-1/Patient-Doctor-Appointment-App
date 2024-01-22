@@ -1,6 +1,6 @@
 "use strict";
 
-const ContentCategory = require('../models/contentCategories');
+const ContentCategory = require('../models/contentCategory');
 
 module.exports = {
 

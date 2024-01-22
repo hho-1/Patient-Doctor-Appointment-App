@@ -1,6 +1,6 @@
 "use strict";
 
-const Content = require('../models/contents');
+const Content = require('../models/content');
 
 module.exports = {
 
