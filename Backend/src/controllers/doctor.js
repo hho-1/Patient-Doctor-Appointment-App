@@ -29,7 +29,10 @@ module.exports = {
         // })
         
         // FOR REACT PROJECT:
-        res.status(200).send(data)
+        res.status(200).json({
+            number:data.length,
+            data
+        })
     },
 
     create: async (req, res) => {
