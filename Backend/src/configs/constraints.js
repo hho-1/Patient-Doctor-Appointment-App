@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = {
-    userTypes : ["Admin", "Doctor", "Patient"]
+    userTypes : ["Admin", "Doctor", "Patient"],
+    genders : ["male", "female", "others"]
 }
