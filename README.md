@@ -1,17 +1,17 @@
 # Patient - Doctor Appointment App
 
-This project includes a full-stack web application that allows patients and doctors to schedule and manage appointments. 
+This project includes a full-stack web application that allows patients and doctors to schedule and manage appointments.
 
 ## Technologies
 
 - **Frontend:**
+
   - Created using React.
   - Utilizes libraries such as React Router, Tailwind, Formik, Yup, and Toastify.
 
 - **Backend:**
   - Developed with Node.js and Express.js.
   - Utilizes MongoDB as the database, integrated with Mongoose.
-  
 - **Authentication and Authorization:**
   - User authentication is managed using Firebase Authentication.
   - Authorization is implemented using React Router's security features.
@@ -19,6 +19,7 @@ This project includes a full-stack web application that allows patients and doct
 ## Project Structure
 
 - **client:** Frontend code
+
   - **src:**
     - **components:** React components
     - **pages:** Application pages
@@ -37,4 +38,6 @@ This project includes a full-stack web application that allows patients and doct
    cd client
    npm install
    npm start
+   ```
+
 # Patient-Doctor-Appointment-App
