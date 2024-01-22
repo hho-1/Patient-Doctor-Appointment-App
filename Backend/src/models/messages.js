@@ -3,7 +3,7 @@
 const { mongoose } = require('../configs/dbConnection');
 
 // Enum for user types
-const UserType = ['doctor','patient',"admin"];
+const { userTypes } = require('../configs/constraints')
 
 // Messages Model:
 
@@ -16,7 +16,7 @@ const MessageSchema = new mongoose.Schema({
     senderUserType: {
         type: String,
         required: true,
-        enum: UserType,
+        enum: userTypes,
     },
     receiverUserId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,7 +26,7 @@ const MessageSchema = new mongoose.Schema({
     receiverUserType: {
         type: String,
         required: true,
-        enum: UserType,
+        enum: userTypes,
     },
     subject: {
         type: String,
