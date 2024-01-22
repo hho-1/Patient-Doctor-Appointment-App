@@ -7,16 +7,18 @@ const router = require('express').Router()
 //const permissions = require('../middlewares/permissions')
 const doctor = require('../controllers/doctor')
 
+const upload = require('../middlewares/upload')
+
 // URL: /doctors
 
 router.route('/')
     .get(doctor.list)
-    .post(doctor.create)
+    .post(upload.array('image'), doctor.create)
 
 router.route('/:id')
     .get(doctor.read)
-    .put(doctor.update)
-    .patch(doctor.update)
+    .put(upload.array('image'), doctor.update)
+    .patch(upload.array('image'), doctor.update)
     .delete(doctor.delete)
 
 /* ------------------------------------------------------- */

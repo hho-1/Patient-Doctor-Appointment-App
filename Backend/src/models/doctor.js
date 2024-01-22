@@ -3,6 +3,8 @@
 
 const { mongoose } = require('../configs/dbConnection')
 
+const { genders } = require('../configs/constraints')
+
 // Doctor Model:
 
 const DoctorSchema = new mongoose.Schema({
@@ -62,12 +64,16 @@ const DoctorSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: ["male", "female", "others"],
+        enum: genders,
         trim: true
     },
     avatar: {
-        type: String,
-        trim: true
+        type: Array,
+        default: []
+    },
+    images: {
+        type: Array,
+        default: []
     },
     files: [{
         type: mongoose.Schema.Types.ObjectId,
