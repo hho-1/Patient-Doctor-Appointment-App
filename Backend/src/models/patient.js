@@ -60,6 +60,15 @@ const PatientSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    messages: [{            
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Message',
+        required: true,
+    }],
+    messageCount: {
+        type: Number,
+        default: 0
+    }
     
 }, { collection: 'patients', timestamps: true })
 
