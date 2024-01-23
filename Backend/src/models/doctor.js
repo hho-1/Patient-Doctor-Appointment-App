@@ -99,6 +99,15 @@ const DoctorSchema = new mongoose.Schema({
         ref:'Complaint',
         required: true,
     }],
+    messages: [{            
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Message',
+        required: true,
+    }],
+    messageCount: {
+        type: Number,
+        default: 0
+    }
     
 }, { collection: 'doctors', timestamps: true })
 

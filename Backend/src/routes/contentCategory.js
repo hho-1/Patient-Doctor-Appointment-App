@@ -1,7 +1,7 @@
 "use strict";
 
 const router = require('express').Router();
-const contentCategories = require('../controllers/contentCategories');
+const contentCategories = require('../controllers/contentCategory');
 const permissions = require('../middlewares/permissions');
 
 // URL: /contentCategories

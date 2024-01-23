@@ -48,6 +48,15 @@ const AdminSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    messages: [{            
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Message',
+        required: true,
+    }],
+    messageCount: {
+        type: Number,
+        default: 0
+    }
 
 }, { collection: 'admins', timestamps: true })
 
