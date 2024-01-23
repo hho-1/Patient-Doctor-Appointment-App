@@ -424,20 +424,21 @@ module.exports = async function () {
     await Appointment.deleteMany() // !!! Clear collection.
 
 
-    cityIds.forEach(value => {
+    for(let k = 0; k < cityIds.length; k++) {
         for(let i = 0; i < branchIds.length; i++){
             for(let j = 0; j < complaintIds.length; j++){
                 Doctor.create({
                     //id: branchIds[i] + i,
                     branchId: branchIds[i],
-                    email: value+i+j+"@site.com",
+                    email: personName[((i+1) * j) + i + j + k] + "." + personName[((i+1) * j) + i + j + 1 + k] + i + j + k + "@site.com",
+                    username: personName[((i+1) * j) + i + j + k] + "." + personName[((i+1) * j) + i + j + 1 + k] + i + j + k,
                     password: "123456Qwe+",
                     title: "Prof",
-                    firstName: personName[((i+1) * j) + i + j],
-                    lastName: personName[((i+1) * j) + i + j +1],
-                    address: addresses[(i+1) * j  + i + j] + " " + (i) * j  + i + j,
+                    firstName: personName[((i+1) * j) + i + j + k],
+                    lastName: personName[((i+1) * j) + i + j + 1 + k],
+                    address: addresses[(i+1) * j  + i + j + k] + " " + i * j  + i + j + k,
                     zipCode: 29017 + i * 10108 + j * 9355 ,
-                    cityId: value,
+                    cityId: cityIds[k],
                     phone: "+099879777878",
                     birthDate: "1970-08-23",
                     gender: genders[j],
@@ -445,13 +446,14 @@ module.exports = async function () {
                 }).then((doctor) => {
                     Patient.create({
                         //id: value[0] + i,
-                        email: value+i+j+"pat@site.com",
+                        email: personName[((i+1) * (j+2)) + i + j + 1 + k] + "." + personName[((i+1) * j) + i + j + 1 + k] + i + j + "pat@site.com",
+                        username: personName[((i+1) * (j+2)) + i + j + 1 + k] + "." + personName[((i+1) * j) + i + j + 1 + k] + j,
                         password: "123456Qwe+",
-                        firstName: personName[((i+1) * (j+2)) + i + j + 1],
-                        lastName: personName[((i+1) * j) + i + j + 1],
+                        firstName: personName[((i+1) * (j+2)) + i + j + 1 + k],
+                        lastName: personName[((i+1) * j) + i + j + 1 + k],
                         address: addresses[(i+1) * (j+1) + j] + " " + (i) * j  + i + j,
                         zipCode: 29018 + i * 10106 + j * 9352,
-                        cityId: value,
+                        cityId: cityIds[k],
                         phone: "+099879123218",
                         birthDate: "1980-08-23",
                         gender: genders[j]
@@ -471,7 +473,7 @@ module.exports = async function () {
         }
         
         console.log('- Appointments Added.')
-    })
+    }
     
 
 
