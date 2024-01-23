@@ -1608,10 +1608,6 @@
               "type": "boolean",
               "example": true
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "unique": {
               "type": "boolean",
               "example": true
@@ -2164,10 +2160,6 @@
               "type": "boolean",
               "example": true
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "unique": {
               "type": "boolean",
               "example": true
@@ -2712,10 +2704,6 @@
               "type": "function"
             },
             "trim": {
-              "type": "boolean",
-              "example": true
-            },
-            "required": {
               "type": "boolean",
               "example": true
             },
