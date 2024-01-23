@@ -54,29 +54,10 @@ module.exports = {
             // console.log(req.file);
             // console.log(req.files);
 
-
-        /* if (req?.admin) {
-            // Set userIds from login info: 
-            req.body.userId = req.admin._id             // burasi düzenlenecek. File'i olusturan id'yi otomatik aldirmak istiyoruz
-
-            }
-            else if(req?.doctor) {
-            // Set userIds from login info: 
-            req.body.userId = req.doctor._id             
-
-            }
-            else if(req?.patient) {
-            // Set userIds from login info: 
-            req.body.userId = req.patient._id             
-
-            }
         
-        
-        */
-
         const data = await File.create(req.body)
 
-        await Doctor.updateOne({_id: data.userId}, {$push: {messages: data.id}})
+        await Doctor.updateOne({_id: data.userId}, {$push: {files: data.id}})
 
         res.status(201).send({
             error: false,
