@@ -3,7 +3,7 @@
 // File Controller:
 
 const File = require('../models/file')
-
+const Doctor = require('../models/doctor')
 
 module.exports = {
 
@@ -76,6 +76,8 @@ module.exports = {
 
         const data = await File.create(req.body)
 
+        await Doctor.updateOne({_id: data.userId}, {$push: {messages: data.id}})
+
         res.status(201).send({
             error: false,
             data
@@ -112,7 +114,7 @@ module.exports = {
         for(let file of req.files){
             req.body.images.push('/img/' + file.originalname)
         }
-        console.log(req.body.images);
+        // console.log(req.body.images);
 
 
         const data = await File.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
@@ -129,6 +131,10 @@ module.exports = {
             #swagger.tags = ["Files"]
             #swagger.summary = "Delete File"
         */
+
+        const file = await File.findOne({ _id: req.params.id })
+
+        await Doctor.updateOne({_id: file.userId}, {$pull: {files: file.id}})
 
         const data = await File.deleteOne({ _id: req.params.id })
 
