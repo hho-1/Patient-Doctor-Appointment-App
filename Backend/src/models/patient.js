@@ -19,6 +19,13 @@ const PatientSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    username: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+        index: true
+    },
     firstName: {
         type: String,
         trim: true,

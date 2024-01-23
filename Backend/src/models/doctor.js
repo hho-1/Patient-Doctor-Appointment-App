@@ -21,6 +21,13 @@ const DoctorSchema = new mongoose.Schema({
         unique: true,
         index: true
     },
+    username: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+        index: true
+    },
     password: {
         type: String,
         trim: true,
