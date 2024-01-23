@@ -22,7 +22,6 @@ const PatientSchema = new mongoose.Schema({
     username: {
         type: String,
         trim: true,
-        required: true,
         unique: true,
         index: true
     },
