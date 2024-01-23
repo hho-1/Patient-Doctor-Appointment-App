@@ -53,7 +53,7 @@ module.exports = {
 
                     res.send({
                         error: false,
-                        token: tokenData.token,
+                        key: tokenData.token,
                         user,
                     })
 
