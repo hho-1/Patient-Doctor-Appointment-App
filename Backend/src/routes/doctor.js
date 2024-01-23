@@ -13,12 +13,12 @@ const upload = require('../middlewares/upload')
 
 router.route('/')
     .get(doctor.list)
-    .post(upload.array('image'), doctor.create)
+    .post(upload.single('avatar'), doctor.create)
 
 router.route('/:id')
     .get(doctor.read)
-    .put(upload.array('image'), doctor.update)
-    .patch(upload.array('image'), doctor.update)
+    .put(upload.single('avatar'), doctor.update)
+    .patch(upload.single('avatar'), doctor.update)
     .delete(doctor.delete)
 
 /* ------------------------------------------------------- */

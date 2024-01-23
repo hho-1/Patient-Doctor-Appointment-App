@@ -205,8 +205,6 @@ module.exports = {
                 await Admin.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
         }
-        // await Contribution.updateOne({id: comment.contribution_id}, {$pull: {comments: comment.id}})
-        // await Contribution.updateOne({_id: comment.contribution_id}, {$inc: {comment_count: -1}})
 
         const data = await Message.deleteOne({ _id: req.params.id });
 

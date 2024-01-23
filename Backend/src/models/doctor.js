@@ -68,12 +68,7 @@ const DoctorSchema = new mongoose.Schema({
         trim: true
     },
     avatar: {
-        type: Array,
-        default: []
-    },
-    images: {
-        type: Array,
-        default: []
+        type: String,
     },
     files: [{
         type: mongoose.Schema.Types.ObjectId,
