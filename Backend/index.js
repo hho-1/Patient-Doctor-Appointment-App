@@ -31,6 +31,20 @@ dbConnection()
 // Accept JSON and convert to Object:
 app.use(express.json())
 
+/* ------------------------------------------------------- */
+
+// CORS
+const cors = require('cors')
+app.use(cors({
+    //"origin": "*",
+    // "origin": "http://localhost:5173/",
+    "origin": ["http://localhost:5173", "http://localhost:3000"],
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  }))
+
+/* ------------------------------------------------------- */
+
+
 // Call Static Files from uploadFile
 app.use('/img', express.static('./upload'))
 
