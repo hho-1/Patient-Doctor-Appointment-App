@@ -1,0 +1,70 @@
+.sidebar-nav{
+    background-color: #38638D;
+}
+.sidebar-nav-logo img{ 
+    color: white;
+}
+.sidebar-nav-upper li a, .sidebar-nav-below li a{
+    color: white;
+}
+.sidebar-nav-upper li a:hover, .sidebar-nav-below li a:hover{
+    color: #38638D;
+    background-color: #B7D8F8;
+}
+.sidebar-nav-upper li a:hover .icons, .sidebar-nav-below li a:hover .icons{
+    color: #38638D;
+}
+.sidebar-nav-upper li a .icons, .sidebar-nav-below li a .icons{
+    color: #B7D8F8;
+}
+a.view-profile:hover{
+    color: #B7D8F8;
+}
+.sypmtoms{
+    background-color: #B7D8F8;
+    padding: 1rem;
+}
+.symptom-buttons{
+    padding: .5rem 2rem;
+    background-color: #38638D;
+    color: white;
+    border-radius: 10px;
+    margin: .5rem 1rem;
+}
+.symptoms-title{
+    margin-bottom: 1rem;
+    color: #38638D;
+}
+.doctor-image{
+    margin-top: 2rem;
+    max-height: 20rem;
+    max-width:min-content ;
+}
+.doctor-profil-name{
+    color: #38638D;
+    margin: 1rem 0 0 0;
+}
+.doctor-profil-location{
+    color: #38638D;
+    margin: 1rem 0 0 0;
+}
+.doctor-profil-phone{
+    color: #38638D;
+    margin: .5rem 0;
+}
+.doctor-profil-website{
+    color: #38638D;
+    margin: .5rem 0;
+}
+.termin-button{
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    background-color: #38638D;
+    color: white;
+    border-radius: 15px;
+}
+.termin-button:hover{
+    background-color: #5999D7;
+    scale: 1.03;
+    border: 1 px solid #38638D;
+}
