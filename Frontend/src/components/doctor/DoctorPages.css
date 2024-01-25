@@ -48,15 +48,18 @@ a.view-profile:hover{
 }
 .doctor-profil-location{
     color: #38638D;
-    margin: 1rem 0 0 0;
+    margin-top: 1rem;
+    margin-left: 8rem;
 }
 .doctor-profil-phone{
     color: #38638D;
-    margin: .5rem 0;
+    margin-top: 1rem;
+    margin-left: 8rem;
 }
 .doctor-profil-website{
     color: #38638D;
-    margin: .5rem 0;
+    margin-top: 1rem;
+    margin-left: 8rem;
 }
 .termin-button{
     margin-top: 3rem;
