@@ -1,6 +1,8 @@
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import SearchDoctor from "./pages/searchDoctor/SearchDoctor";
+//import Home from "./pages/Home";
+import AppRouter from "./router/AppRouter";
+
 
 
 function App() {
@@ -8,7 +10,11 @@ function App() {
   return (
     <div className="App">
        <Provider store={store}>
-        <SearchDoctor/>
+
+        
+        <AppRouter/>
+
+
       </Provider>
     </div>
   );
