@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 
+import logo2 from "../../assets/Logo2.png"
 
 const Sidebar = () => {
 
@@ -76,7 +77,7 @@ const Sidebar = () => {
                 <div className="flex flex-col h-full">
                     <div className='sidebar-nav-logo h-20 flex items-center px-8'>
                         <a href='#' className='flex-none'>
-                            <img src="https://floatui.com/logo.svg" width={140} className="mx-auto" />
+                            <img src={logo2} width={140} className="mx-auto" />
                         </a>
                     </div>
                     <div className="sidebar-nav-all flex-1 flex flex-col h-full overflow-auto ps-5">

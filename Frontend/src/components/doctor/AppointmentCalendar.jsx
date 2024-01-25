@@ -23,18 +23,8 @@ const AppointmentCalendar = () => {
     getData("appointments")
     getData("doctors")
 
-    
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  //console.log(myData.doctors)
-
-  
-  
-  //console.log(myData)
-  
-
 
 
   const handleDateSelect = (value) => {
@@ -66,7 +56,7 @@ const AppointmentCalendar = () => {
     const appoOfThisDoctor = myData.appointments.filter((appo) => appo.doctorId === doctor_id)
       for(let i = 0; i < appoOfThisDoctor.length; i++){
     
-        if(appoOfThisDoctor[i].date.slice(0,10) !== day){                
+        if(appoOfThisDoctor[i].date.slice(0,10) === day){                
           
         
         }
