@@ -25,7 +25,7 @@ const AboutDoctor = ({about, languages}) => {
       <p className='text-md mt-3'>
         {about}
       </p>
-      <button className='text-lg'>Sprachen: Deutsch, {languages.map((lang) => lang, ",")}</button>
+      <button className='text-lg'>Sprachen: {languages.length ? languages.map((lang) => lang).join(", ") : "Deutsch"}</button>
       <div className='flex justify-around items-start'>
         <div className='flex flex-col w-20 items-center'>
           <img src={user2Icon} alt="userIcon" width={60}/>

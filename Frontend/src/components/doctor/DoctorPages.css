@@ -76,6 +76,9 @@ a.view-profile:hover{
 }
 .appointments-calendar{
     margin: 3rem 0;
+    padding: 2rem;
+    border-left: 10px solid rgb(241, 240, 240);
+    border-right: 10px solid rgb(241, 240, 240);
 }
 .hour-buttons{
     margin-top: 4rem;
@@ -89,7 +92,8 @@ a.view-profile:hover{
     width: 4.5rem;
 }
 .about-doctor{
-    padding: 1rem 3rem 1rem 1rem;
+    padding: 1rem 3rem 1rem 3rem;
+    
 }
 .about-doctor button{
     padding: .5rem 1rem;

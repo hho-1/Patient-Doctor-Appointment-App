@@ -66,8 +66,8 @@ const AppointmentCalendar = () => {
   }, [setDay,day])
 
   return <div className="appointments-calendar flex flex-col justify-center items-center">
-    <Calendar className="react-calendar" defaultView="year" locale="de-DE" onChange={handleDateSelect}/>
-    <div className="hour-buttons">
+    <Calendar className="react-calendar" defaultView="month" locale="de-DE" onChange={handleDateSelect}/>
+    <div className="hour-buttons text-center">
       <button>07.00</button>
       <button>07.20</button>
       <button>07.40</button>
