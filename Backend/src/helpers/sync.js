@@ -434,6 +434,7 @@ module.exports = async function () {
                     username: personName[((i+1) * j) + i + j + k] + "." + personName[((i+1) * j) + i + j + 1 + k] + i + j + k,
                     password: "123456Qwe+",
                     title: "Prof",
+                    about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?",
                     firstName: personName[((i+1) * j) + i + j + k],
                     lastName: personName[((i+1) * j) + i + j + 1 + k],
                     address: addresses[(i+1) * j  + i + j + k] + " " + i * j  + i + j + k,

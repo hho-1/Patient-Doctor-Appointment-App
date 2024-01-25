@@ -20,7 +20,7 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(Doctor)
+        const data = await res.getModelList(Doctor, {}, ["branchId", "cityId"])
 
         // res.status(200).send({
         //     error: false,
@@ -60,7 +60,7 @@ module.exports = {
             #swagger.summary = "Get Single Doctor"
         */
 
-        const data = await Doctor.findOne({ _id: req.params.id })
+        const data = await Doctor.findOne({ _id: req.params.id }).populate(["branchId", "cityId", "complaints"])
 
         res.status(200).send({
             error: false,

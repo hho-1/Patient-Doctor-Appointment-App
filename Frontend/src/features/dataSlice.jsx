@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import React from "react";
+//import React from "react";
 
 const dataSlice = createSlice({
   name: "data",

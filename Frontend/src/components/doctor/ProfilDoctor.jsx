@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import useDataCall from '../../hooks/useDataCall'
 import { useSelector } from 'react-redux'
 
+
 const DoctorProfil = () => {
 
   const {getData} = useDataCall()
@@ -9,26 +10,26 @@ const DoctorProfil = () => {
   //const {doctor_id} = useParams()                     //Bu sayfada doctor id parametreden alinmali
 
   //console.log(doctor_id)
-  let doctor_id = "65afd150425342c5cb398117"       //örnek bir tane
+  let doctor_id = "65b2357172eae03f1e0f5294"       //örnek bir tane
 
   useEffect(() => {
     getData("doctors")
-    getData("branches")
-    getData("cities")
-
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   console.log(myData)
 
-  const doctorData = myData?.doctors?.data
-  const thisDoctor = doctorData.filter((doc) => doc.id === doctor_id)
-  console.log(thisDoctor)
+  const doctorData = myData.doctors.data
+  console.log(doctorData)
 
-  const cityData = myData.cities
-  //console.log(myData.cities)
-  const thisCity = cityData.filter((cit) => cit._id === thisDoctor[0].cityId)
-  const thisCityName = thisCity[0].name
+  const thisDoctor = doctorData.filter((doct) => doct.id === doctor_id)
+  console.log(thisDoctor[0].branchId.name)
+
+  // const cityData = myData.cities
+  // console.log(myData.cities)
+  // const thisCity = cityData.filter((cit) => cit._id === thisDoctor[0].cityId)
+  // const thisCityName = thisCity[0].name
 
   useEffect(() => {
 
@@ -41,13 +42,13 @@ const DoctorProfil = () => {
     <div className='text-center flex flex-col justify-center items-center'>
       <img className='doctor-image' src='https://www.thewmch.com/wp-content/uploads/2023/02/female-doctor-using-her-digital-tablet-free-vector.jpg' alt="doctor-pic"/>
       <h1 className='text-xl font-bold doctor-profil-name'>{thisDoctor[0].title}. {thisDoctor[0].firstName} {thisDoctor[0].lastName}</h1>
-      <h2 className='text-xl doctor-profil-name'>Doctor branch</h2>
+      <h2 className='text-xl doctor-profil-name'>{thisDoctor[0].branchId.name}</h2>
       <div className='flex justify-between doctor-profil-location'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
         </svg>
-        <h3>{thisDoctor[0].zipCode}, {thisCityName}</h3>
+        <h3>{thisDoctor[0].cityId.name}</h3>
       </div>
       <div className='flex justify-between doctor-profil-phone'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

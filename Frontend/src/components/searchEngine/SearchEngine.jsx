@@ -1,7 +1,7 @@
 import React from 'react'
 import "./searchEngine.css"
-import searchIcon from "./assets/ic_baseline-search.png"
-import locationIcon from "./assets/locationIcon.png"
+import searchIcon from "../../assets/ic_baseline-search.png"
+import locationIcon from "../../assets/locationIcon.png"
 
 const searchEngine = () => {
  
