@@ -101,6 +101,7 @@ a.view-profile:hover{
     color: white;
     border-radius: 10px;
     margin: 4rem 0;
+    cursor: default;
 }
 .uber-mich{
     color:#38638D;
