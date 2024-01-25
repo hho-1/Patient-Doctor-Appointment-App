@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 
 
 const Home = () => {
-  const {getData} = useDataCall()
-const myData = useSelector((state)=>state.data)
+//   const {getData} = useDataCall()
+// const {myData} = useSelector((state)=>state.data)
 
-console.log("data",myData);
+// console.log("data",myData);
 
-useEffect(() => {
-  getData("doctors")
-}, [])
+// useEffect(() => {
+//   getData("doctors")
+// }, [])
 
 
   return (
