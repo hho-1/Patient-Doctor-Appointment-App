@@ -9,7 +9,7 @@ import "../../components/doctor/DoctorPages.css"
 
 const DetailDoctor = () => {
   return (
-    <div className="grid grid-rows-5 grid-cols-8">
+    <div className="grid grid-rows-5 grid-cols-8 w-100">
       <div className="row-span-5 col-span-1"><Sidebar/></div>
       <div className="row-span-1 col-span-7"><Symptom/></div>
       <div className="row-span-4 col-span-2"><DoctorProfil/></div>

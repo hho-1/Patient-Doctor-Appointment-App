@@ -1868,10 +1868,6 @@
               "items": {
                 "type": "string"
               }
-            },
-            "trim": {
-              "type": "boolean",
-              "example": true
             }
           }
         },

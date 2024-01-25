@@ -72,10 +72,10 @@ const Sidebar = () => {
     return (
         <>
             <nav
-                className="sidebar-nav fixed top-0 left-0 h-full border-r space-y-8 w-70">
-                <div class="flex flex-col h-full">
+                className="sidebar-nav fixed top-0 left-0 h-full border-r space-y-8">
+                <div className="flex flex-col h-full">
                     <div className='sidebar-nav-logo h-20 flex items-center px-8'>
-                        <a href='javascript:void(0)' className='flex-none'>
+                        <a href='#' className='flex-none'>
                             <img src="https://floatui.com/logo.svg" width={140} className="mx-auto" />
                         </a>
                     </div>
@@ -84,7 +84,7 @@ const Sidebar = () => {
                             {
                                 navigation.map((item, idx) => (
                                     <li key={idx}>
-                                        <a href={item.href} className="flex items-center gap-x-2 text-lg p-2 duration-150">
+                                        <a href='#' className="flex items-center gap-x-2 text-lg p-2 duration-150">
                                             <div className="icons">{item.icon}</div>
                                             {item.name}
                                         </a>
@@ -97,7 +97,7 @@ const Sidebar = () => {
                                 {
                                     navsFooter.map((item, idx) => (
                                         <li key={idx}>
-                                            <a href={item.href} className="flex items-center gap-x-2 text-gray-600 p-2 text-lg duration-150">
+                                            <a href='#' className="flex items-center gap-x-2 text-gray-600 p-2 text-lg duration-150">
                                                 <div className="icons">{item.icon}</div>
                                                 {item.name}
                                             </a>
@@ -111,7 +111,7 @@ const Sidebar = () => {
                                     <div>
                                         <span className="block text-white text-sm font-semibold">Alivika tony</span>
                                         <a
-                                            href="javascript:void(0)"
+                                            href="#"
                                             className="block mt-px text-white text-xs view-profile"
                                         >
                                             View profile

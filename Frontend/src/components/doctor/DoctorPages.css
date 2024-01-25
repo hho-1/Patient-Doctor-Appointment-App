@@ -1,5 +1,7 @@
 .sidebar-nav{
     background-color: #38638D;
+    min-width: 15rem;
+    box-shadow: 5px black;
 }
 .sidebar-nav-logo img{ 
     color: white;
@@ -32,7 +34,7 @@ a.view-profile:hover{
     margin: .5rem 1rem;
 }
 .symptoms-title{
-    margin-bottom: 1rem;
+    margin: 1rem 0 0 0;
     color: #38638D;
 }
 .doctor-image{
@@ -67,4 +69,18 @@ a.view-profile:hover{
     background-color: #5999D7;
     scale: 1.03;
     border: 1 px solid #38638D;
+}
+.appointments-calendar{
+    margin: 3rem 0;
+}
+.hour-buttons{
+    margin-top: 4rem;
+}
+.hour-buttons button{
+    padding: .5rem 1rem;
+    font-size: large;
+    background-color: #5999D7;
+    border-radius: 5px;
+    margin: 0.5rem .5rem;
+    width: 4.5rem;
 }
