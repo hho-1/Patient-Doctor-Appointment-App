@@ -1,7 +1,7 @@
 .sidebar-nav{
     background-color: #38638D;
     min-width: 15rem;
-    box-shadow: 5px black;
+    box-shadow: 3px 0px 6px lightgray;
 }
 .sidebar-nav-logo img{ 
     color: white;
@@ -25,6 +25,7 @@ a.view-profile:hover{
 .sypmtoms{
     background-color: #B7D8F8;
     padding: 1rem;
+    box-shadow: 0px 3px 7px lightgray;
 }
 .symptom-buttons{
     padding: .5rem 2rem;
@@ -88,7 +89,7 @@ a.view-profile:hover{
     width: 4.5rem;
 }
 .about-doctor{
-    padding: 1rem;
+    padding: 1rem 3rem 1rem 1rem;
 }
 .about-doctor button{
     padding: .5rem 1rem;

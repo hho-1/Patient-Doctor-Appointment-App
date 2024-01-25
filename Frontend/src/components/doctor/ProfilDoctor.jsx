@@ -26,7 +26,7 @@ const DoctorProfil = ({branchId, cityId, phone, website, title, firstName, lastN
       </div>
       <div className='flex doctor-profil-website'>
       <img src={webIcon} className="me-1 w-6 h-6" alt="webIcon" />
-        <a href="www.example.com">{website}</a>
+      {website ? <a href="www.example.com"> {website}</a> : "Keine Webseite Vorhanden"}
       </div>
       <button className='flex justify-center termin-button duration-150 mx-auto'>TERMIN VEREINBAREN</button>
       
