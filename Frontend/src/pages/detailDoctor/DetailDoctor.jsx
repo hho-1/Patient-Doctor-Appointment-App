@@ -4,20 +4,18 @@ import Symptom from '../../components/doctor/Symptom'
 import DoctorProfil from '../../components/doctor/ProfilDoctor'
 import AppointmentCalendar from '../../components/doctor/AppointmentCalendar'
 import AboutDoctor from '../../components/doctor/AboutDoctor'
-
+import { useParams } from 'react-router-dom';
 import "../../components/doctor/DoctorPages.css"
 import useDataCall from '../../hooks/useDataCall'
 import { useSelector } from 'react-redux'
+import Loading from '../loading/Loading'
 
 const DetailDoctor = () => {
-
+  const {id} = useParams();
   const {getData} = useDataCall()
   const {doctors} = useSelector((state)=>state.data)
-  let doctor_id = "65b257cf1cb1cfeca6da7e27"
 
-
-  const thisDoctor = doctors?.data?.filter((item, i) => {return item.id === doctor_id})
-  //console.log(thisDoctor)
+  const thisDoctor = doctors?.data?.filter((item, i) => {return item.id === id})
 
   useEffect(() => {
     
@@ -25,11 +23,12 @@ const DetailDoctor = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  
+
+
   return (
     <>
     {
-      !thisDoctor?.length ? (<p>Loading...</p>) : (
+      !thisDoctor?.length ? <Loading/> : (
         <div className="grid grid-rows-5 grid-cols-8 w-100">
           <div className="row-span-5 col-span-1"><Sidebar/></div>
           <div className="row-span-1 col-span-7"><Symptom/></div>
