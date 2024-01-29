@@ -6,13 +6,13 @@ import webIcon from '../../assets/web.png'
 
 
 
-const DoctorProfil = ({branchId, cityId, phone, website, title, firstName, lastName}) => {
+const DoctorProfil = ({branchId, cityId, phone, website, title, firstName, lastName, avatar}) => {
 
 
   return (
     <>
     <div className='flex flex-col justify-center items-center p-1 profil-doctor'>
-      <img className='doctor-image' src='https://www.thewmch.com/wp-content/uploads/2023/02/female-doctor-using-her-digital-tablet-free-vector.jpg' alt="doctor-pic"/>
+      <img className='doctor-image' src={avatar ? avatar : 'https://www.thewmch.com/wp-content/uploads/2023/02/female-doctor-using-her-digital-tablet-free-vector.jpg'} alt="doctor-pic"/>
       <h1 className='text-xl font-bold doctor-profil-name'> {title}. {firstName} {lastName}</h1>
       <h2 className='text-xl doctor-profil-name'>{branchId?.name}</h2>
       </div>  

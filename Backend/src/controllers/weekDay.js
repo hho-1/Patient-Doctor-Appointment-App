@@ -164,39 +164,45 @@ module.exports = {
     
                         const appoArray = divideDay(dayStart, dayEnd, period, lunchBreakStart, lunchBreakEnd)
 
+                        const appointmentsOfTheDay = []
 
                         for(let j = 0; j < appoArray.length; j++){
-                            Appointment.create({
+                            const newApp = await Appointment.create({
                                 doctorId: data.doctorId, 
                                 date: dayArray[i],
                                 timeStart: appoArray[j]
                             })
+                            appointmentsOfTheDay.push(newApp._id)
                         }
                         await DaySchedule.create({
                             doctorId: data.doctorId, 
                             day: dayArray[i],
                             hours: appoArray,
-                            dayName: tagName
+                            dayName: tagName,
+                            appointmentsOfTheDay: appointmentsOfTheDay
                         })
                         
                     }
                     else{
                         const appoArray = divideTimePeriod(dayStart, dayEnd, period)
 
-                        
+                        const appointmentsOfTheDay = []
+
                         for(let j = 0; j < appoArray.length; j++){
-                            await Appointment.create({
+                            const newApp = await Appointment.create({
                                 doctorId: data.doctorId, 
                                 date: dayArray[i],
                                 timeStart: appoArray[j]
                             })
+                            appointmentsOfTheDay.push(newApp._id)
                         }
 
                         await DaySchedule.create({
                             doctorId: data.doctorId, 
                             day: dayArray[i],
                             hours: appoArray,
-                            dayName: tagName
+                            dayName: tagName,
+                            appointmentsOfTheDay: appointmentsOfTheDay
                         })
                     }  
                 }
