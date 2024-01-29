@@ -1,7 +1,7 @@
 import React from "react";
 
-const DoctorDashboard = () => {
+const DoctorPanel = () => {
   return <div></div>;
 };
 
-export default DoctorDashboard;
+export default DoctorPanel;

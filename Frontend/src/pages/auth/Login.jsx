@@ -1,4 +1,3 @@
-
 import React from 'react'
 import LoginForm from '../../components/authForm/LoginForm'
 import image from "../../assets/register.png"
@@ -20,5 +19,4 @@ const Login = () => {
     </div>
   )
 }
-
-export default Login
+export default Login;

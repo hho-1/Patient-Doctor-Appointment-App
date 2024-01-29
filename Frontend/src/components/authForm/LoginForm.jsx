@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useState } from 'react';
 import userIcon1 from "../../assets/user.png"
@@ -143,5 +141,4 @@ const LoginForm = () => {
       </div>
   )
 }
-
-export default LoginForm
+export default LoginForm;
