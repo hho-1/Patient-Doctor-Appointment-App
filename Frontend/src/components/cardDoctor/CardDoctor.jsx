@@ -2,7 +2,13 @@ import React from 'react'
 import "./cardDoctor.css"
 import doctorImage from './assets/doctor.png'
 import starIcon from './assets/star.png'
-const CardDoctor = ({address, title, firstName, lastName, zipCode}) => {
+import { useNavigate, useParams } from 'react-router-dom';
+
+
+
+const CardDoctor = ({id, address, title, firstName, lastName, zipCode, branchId, cityId}) => {
+  const navigate = useNavigate()
+
   return (
     <div className='cardDoctor'>
       <div className="doctorImage">
@@ -13,8 +19,9 @@ const CardDoctor = ({address, title, firstName, lastName, zipCode}) => {
         <div className="doctor-middleInfo">
           <div className="doctorName">
             <h2><span>{title}.</span>  {firstName} {lastName}</h2>
-            <h3>Kinderarzt</h3>
-            <p><span>Adresse: </span>{address.split(" ").slice(0, 2).join(" ")}, {zipCode}</p>
+            <h3>{branchId?.name}</h3>
+            <p className='address'><span>Adresse: </span>{address.split(" ").slice(0, 2).join(" ")} </p>
+            <p className='city'>{zipCode}, {cityId?.name} </p>
           </div>
 
           <div className="doctorRate">
@@ -27,7 +34,7 @@ const CardDoctor = ({address, title, firstName, lastName, zipCode}) => {
           </div>
         </div>
 
-        <button className="doctor-info-btn">MEHR INFOS</button>
+        <button className="doctor-info-btn" onClick={()=>navigate(`/search/${id}/`)}>MEHR INFOS</button>
       </div>
 
 
