@@ -1,14 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from "../pages/home/Home";
-import RegisterDoctor from "../pages/auth/RegisterDoctor";
-import RegisterPatient from "../pages/auth/RegisterPatient";
+import React from "react";
 import DetailDoctor from "../pages/detailDoctor/DetailDoctor";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 import SearchDoctor from "../pages/searchDoctor/SearchDoctor";
-import Login from "../pages/auth/Login";
-import PrivateRouter from "./PrivateRouter";
-import AdminPanel from "../pages/panels/AdminPanel";
-import DoctorPanel from "../pages/panels/DoctorPanel";
-import PatientPanel from "../pages/panels/PatientPanel";
+import Home from "../pages/home/Home";
 
 const AppRouter = () => {
   return (
