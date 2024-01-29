@@ -37,7 +37,6 @@
     left: 90px;
     position: absolute;
     width: 190px;
-  
 }
 .doctorName span{
     font-weight: bold;
@@ -45,11 +44,7 @@
 .doctorName h2 span{
     font-size: small;
 }
-.address{
-    margin-top: 25px;
-    font-size: 14px;
-}
-.city{
+.doctorName p{
     margin-top: 5px;
     font-size: 14px;
 }
@@ -58,8 +53,6 @@
     top: 20px;
     right: 30px;
     width: 75px;
-    border-left: 2px solid #38638D;
-    padding-left: 15px;
 }
 
 .doctor-info-btn{
@@ -86,7 +79,7 @@
 .starRate{
     display: flex;
     height: 19px;
-    margin-bottom:15px ;
+    margin-bottom:10px ;
 }
 
 .doctorRate span{
