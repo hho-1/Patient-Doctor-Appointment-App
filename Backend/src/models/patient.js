@@ -42,6 +42,9 @@ const PatientSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    profilePic: {
+        type: String,
+    },
     cityId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City',
