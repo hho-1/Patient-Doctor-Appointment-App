@@ -1,28 +1,46 @@
 import React from 'react'
+
+import './auth.css'
+import RegisterPatientForm, { registerSchema } from '../../components/authForm/RegisterPatientForm'
 import image from "../../assets/register.png"
-import Header from '../../components/header/Header'
-import RegisterPatientForm from '../../components/authForm/RegisterPatientForm'
+import { Formik } from "formik"
+import useAuthCall from '../../hooks/useAuthCall'
 
-const RegisterPatient = () => {
+const RegisterDoctor = () => {
+
+  const { regPatient } = useAuthCall()
   return (
-    <>
-     <Header/>
-     <div className="min-h-screen flex flex-col lg:flex-row bg-blue-200">
-     
-     {/* Left side (Image) */}
-     <div className=" order-2 lg:order-1 block m-auto ">
-       <img
-         //style={{ width: '700px', height: '700px' }}
-         src={image}
-         alt="Login Image"
-       />
-     </div>
-     {/* Right side (Login Form) */}
-     <RegisterPatientForm/>
-     
-   </div>
-    </>
-
+    <div className="grid grid-cols-2 register-page">
+      {/* Left side (Image) */}
+      <div className="block m-auto ">
+        <img
+          //style={{ width: '700px', height: '700px' }}
+          src={image}
+          alt='Register'
+        />
+      </div>
+      <div>
+      <Formik
+            initialValues={{
+              username: "",
+              first_name: "",
+              last_name: "",
+              email: "",
+              password: "",
+            }}
+            validationSchema={registerSchema}
+            onSubmit={(values, actions) => {
+              regPatient({ ...values, password2: values.password })
+              actions.resetForm()
+              actions.setSubmitting(false)
+            }}
+            component={(props) => <RegisterPatientForm {...props} />}
+          ></Formik>
+      </div>
+      
+      
+    </div>
   )
 }
-export default RegisterPatient;
+
+export default RegisterDoctor
