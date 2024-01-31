@@ -1,67 +1,68 @@
 
 import React, { useState } from 'react'
-import { Form } from "formik"
 import { object, string } from "yup"
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import useAuthCall from '../../hooks/useAuthCall'
 
 
 
-export const registerSchema = object({
-  username: string()
-    .max(20, "Kullanıcı adı 10 karakterden az olmalıdır.")
-    .required("username zorunludur"),
-  first_name: string()
-    .max(20, "İsim 20 karakterden az olmalıdır.")
-    .required("first_name zorunludur"),
-  last_name: string()
-    .max(20, "Soyisim 30 karakterden az olmalıdır.")
-    .required("last_name zorunludur"),
-
-  email: string().email().required("Email zorunludur"),
+export const registerSchema = object().shape({
+  firstName: string()
+    .max(20, "Maximum 20 Buchstaben")
+    .required("Vorname ist verpflichted"),
+  lastName: string()
+    .max(20, "Maximum 20 Buchstaben")
+    .required("Nachname ist verpflichted"),
+  email: string().email().required("Email ist verpflichted"),
   password: string()
-    .required("password zorunludur")
-    .min(8, "password en az 8 karakter olmalıdır")
-    .max(20, "password en fazla 20 karakter olmalıdır")
-    .matches(/\d+/, "Password bir sayı içermelidir")
-    .matches(/[a-z]/, "Password bir küçük harf içermelidir")
-    .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
-    .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
+    .required("Email ist verpflichted")
+    .min(8, "Minimum 8 Zeichen")
+    .max(20, "Maximum 20 Zeichen")
+    .matches(/\d+/, "Minimum 1 Ziffer")
+    .matches(/[a-z]/, "Minimum 1 Kleinbuchstabe")
+    .matches(/[A-Z]/, "Minimum 1 Großbuchstabe")
+    .matches(/[!,?{}><%&$#£+-.]+/, "Minimum 1 Sonderzeichen"),
+  address: string()
+    .required("Address ist verpflichted"),
+  zipCode: string()
+    .required("postleitzahl ist verpflichted"),
+  phone: string()
+    .required("Telefon ist verpflichted")
 })
 
-// const options = {
-// 	autoHide: true,
-// 	todayBtn: false,
-// 	clearBtn: false,
-// 	clearBtnText: "Clear",
-// 	maxDate: new Date("2024-02-29"),
-// 	minDate: new Date("1920-01-01"),
-// 	theme: {
-// 		background: "white",
-// 		todayBtn: "",
-// 		clearBtn: "",
-// 		icons: "",
-// 		text: "",
-// 		disabledText: "bg-red-500",
-// 		input: "",
-// 		inputIcon: "",
-// 		selected: "",
-// 	},
-// 	datepickerClassNames: "top-12",
-// 	defaultDate: new Date("2022-01-01"),
-// 	language: "de",
-// 	disabledDates: [],
-// 	weekDays: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
-// 	inputNameProp: "birthdate",
-// 	inputIdProp: "birthdate",
-// 	inputPlaceholderProp: "Geburtstag",
-// 	inputDateFormatProp: {
-// 		day: "numeric",
-// 		month: "numeric",
-// 		year: "numeric"
-// 	}
-// }
+
+
 
 
 const RegisterPatientForm = () => {
+  const initiallVal = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    birthDate: "",
+    gender: "",
+    zipCode: "",
+    phone: "",
+    address: ""
+  }
+
+  const { regPatient } = useAuthCall()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  })
+
+  const onSubmit = (data) => {
+    console.log(data)
+    regPatient(data)
+    
+  }
 
   const [isPasswordHidden, setPasswordHidden] = useState(true)
   const [isCalendarHidden, setCalendarHidden] = useState(true)
@@ -78,25 +79,34 @@ const RegisterPatientForm = () => {
 	};
   
   
+  
   return (
     <div className='register-form-page text-center flex flex-col justify-center items-center'>
       <h1 className='reg-title'>Patient Registrierung</h1>
-      <Form className='register-form flex flex-col items-center justify-center'>
+      <form onSubmit={handleSubmit(onSubmit)} className='register-form flex flex-col items-center justify-center'>
       
         <div className='flex justify-evenly w-full'>
           <div className="relative mt-2 max-w-[400px] min-w-[100px] w-[320px] text-gray-600">
             <input
               type="text"
+              {...register('firstName')}
               placeholder="Vorname"
               className="w-full pl-[2.5rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.firstName && (
+            <p className="text-xs italic text-red-500">{errors.firstName.message}</p>
+          )}
           </div>
           <div className="relative mt-2 max-w-[400px] min-w-[100px] w-[320px] text-gray-600">
             <input
               type="text"
+              {...register('lastName')}
               placeholder="Nachname"
               className="w-full pl-[2.5rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.lastName && (
+              <p className="text-xs italic text-red-500">{errors.lastName.message}</p>
+            )}
           </div>
         </div>
         <div className='flex justify-evenly w-full mt-4'>
@@ -106,9 +116,11 @@ const RegisterPatientForm = () => {
             </svg>
             <input
                 type="text"
+                {...register('email')}
                 placeholder="Email"
                 className="w-full pl-12 h-12 pr-3 py-2 text-gray-600 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.email && <p className="text-xs italic text-red-500">{errors.email.message}</p>}
           </div>
           <div className="relative max-w-[400px] min-w-[100px] w-[320px] mt-2">
                 <button className="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
@@ -130,40 +142,37 @@ const RegisterPatientForm = () => {
                 </button>
                 <input
                     type={isPasswordHidden ? "password" : "text"}
+                    {...register('password')}
                     placeholder="Password"
                     className="w-full pr-12 h-12 pl-3 py-2 text-gray-600 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
                 />
+                {errors.password && (
+                  <p className="text-xs italic text-red-500">{errors.password.message}</p>
+                )}
           </div>
         </div>  
         <div className='flex items-center justify-evenly w-full mt-4'>
           <div className='relative max-w-[400px] min-w-[100px] w-[320px] mt-2 flex items-center' >
-            {/* <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} classNames='flex items-center relative datepicker'>
-					      
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-              </svg>
-              <input type="text" className="w-full pl-[3rem] h-11 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg" placeholder="Geburtstag" value={selectedDate} onFocus={() => setShow(true)} readOnly />
-					     
-			      </Datepicker> */}
+            
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" onClick={() => setCalendarHidden(!isCalendarHidden)} className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
             </svg>
             {
               isCalendarHidden ? 
-              <input type="text" className="w-full pl-[3rem] text-gray-600 h-11 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg" placeholder="Geburtstag" onFocus={() => {setShow(true)}} /> 
+              <input type="text" {...register('birthDate')} onClick={() => setCalendarHidden(!isCalendarHidden)} className="w-full pl-[3rem] text-gray-600 h-11 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg" placeholder="Geburtstag" onFocus={() => {setShow(true)}} /> 
               : 
-              <input type="date"  className="w-full pl-[3rem] text-gray-600 h-11 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg" placeholder="Geburtstag" onFocus={() => {setShow(true)}} />
+              <input type="date" {...register('birthDate')} className="w-full pl-[3rem] text-gray-600 h-11 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg" placeholder="Geburtstag" onFocus={() => {setShow(true)}} />
             }
             
 					    
           </div>
           
           <div className="relative mt-2 max-w-[400px] min-w-[100px] w-[320px] mt-2focus:border-indigo-600 shadow-sm rounded-lg text-lg">
-            <select className="w-full h-11 px-3 py-2 text-md text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
-              <option value="0" disabled selected hidden className='text-gray-600'>Geschlecht</option>
-              <option value="1">Female</option>
-              <option value="2">Male</option>
-              <option value="3">Others</option>
+            <select defaultValue="Geschlecht" {...register('gender')} className="w-full h-11 px-3 py-2 text-md text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
+              <option value="Geschlecht" disabled hidden className='text-gray-600'>Geschlecht</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Others">Others</option>
             </select>
           </div>
         </div>
@@ -175,9 +184,13 @@ const RegisterPatientForm = () => {
 
             <input
               type="text"
+              {...register('address')}
               placeholder="Adresse"
               className="w-full pl-[3rem] pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.address && (
+              <p className="text-xs italic text-red-500">{errors.address.message}</p>
+            )}
         </div>  
         <div className='flex items-center justify-evenly w-full mt-4'>
           <div className="relative max-w-[400px] min-w-[100px] w-[320px] text-gray-600">
@@ -187,9 +200,13 @@ const RegisterPatientForm = () => {
             </svg>
             <input
               type="number"
+              {...register('zipCode')}
               placeholder="Postleitzahl"
               className="w-full pl-[3rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.zipCode && (
+              <p className="text-xs italic text-red-500">{errors.zipCode.message}</p>
+            )}
           </div>
           <div className="relative max-w-[400px] min-w-[100px] w-[320px] text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 absolute text-gray-400 left-3 inset-y-0 my-auto">
@@ -198,15 +215,19 @@ const RegisterPatientForm = () => {
 
             <input
               type="number"
+              {...register('phone')}
               placeholder="Telefon"
               className="w-full pl-[3rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
+            {errors.phone && (
+            <p className="text-xs italic text-red-500">{errors.phone.message}</p>
+          )}
           </div>
         </div>
 
-        <button className='flex justify-center register-button duration-150 mx-auto'>REGISTER</button>
+        <button type='submit' className='flex justify-center register-button duration-150 mx-auto'>REGISTER</button>
         
-      </Form>
+      </form>
     </div>
     
   )
