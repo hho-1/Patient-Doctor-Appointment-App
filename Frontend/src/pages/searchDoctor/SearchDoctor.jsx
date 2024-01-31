@@ -8,6 +8,7 @@ import Loading from '../loading/Loading';
 import Footer from '../../components/footer/Footer';
 import searchIcon from "../../assets/ic_baseline-search.png"
 import locationIcon from "../../assets/locationIcon.png"
+import Header from '../../components/header/Header';
 const SearchDoctor = () => {
 
   const { getData } = useDataCall()
@@ -59,8 +60,10 @@ const [filteredDoctors, setfilteredDoctors] = useState([])
 
   return (
     <div className="main-container">
+     
       <div className="nav">
-        <div className="header">Navbar</div>
+        {/* <div className="header">Navbar</div> */}
+        <Header/>
       </div>
       <form onSubmit={handleSearch}>
         <div className="input">

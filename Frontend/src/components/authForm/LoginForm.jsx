@@ -1,29 +1,36 @@
 import React from 'react';
 import { useState } from 'react';
+import useAuthCall from '../../hooks/useAuthCall';
 import userIcon1 from "../../assets/user.png"
 import userIcon2 from "../../assets/user2.png"
 import lock from "../../assets/lock.png"
 import doctor from "../../assets/doctor.png"
 import patient from "../../assets/patient.png"
+import { useSelector } from 'react-redux';
 
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const { currentUser, token } = useSelector((state) => state.auth)
+  const {login,currentUser} = useAuthCall()
+  const [signIn, setSignIn] = useState({
+    email: "",
+    password: "",
+  })
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+const habdleInputChange = (field, value) => {
+  setSignIn((prevParams) => ({
+    ...prevParams,
+    [field]:value,
+  }))
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+      login(signIn)
+      // console.log("currentUser:",currentUser);
+      // console.log("token:",token);
+      // console.log("currentUser:",currentUser);
   };
 
   //Slider Button
@@ -59,8 +66,8 @@ const LoginForm = () => {
                 id="email"
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
+                value={signIn.email}
+                onChange={(e) => habdleInputChange('email', e.target.value)}
               />
             </div>
             <div className="mb-4 relative">
@@ -78,8 +85,8 @@ const LoginForm = () => {
                 id="password"
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
+                value={signIn.password}
+                onChange={(e) => habdleInputChange('password', e.target.value)}
               />
             </div>
             <div className="w-full flex justify-center">
