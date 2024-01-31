@@ -9,6 +9,7 @@ import PrivateRouter from "./PrivateRouter";
 import AdminPanel from "../pages/panels/AdminPanel";
 import DoctorPanel from "../pages/panels/DoctorPanel";
 import PatientPanel from "../pages/panels/PatientPanel";
+import About from "../pages/about/About";
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/regdoctor" element={<RegisterDoctor />} />
         <Route path="/regpatient" element={<RegisterPatient />} />
+        <Route path="/about" element={<About/>} />
         <Route element={<PrivateRouter />}>
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/doctor" element={<DoctorPanel />} />

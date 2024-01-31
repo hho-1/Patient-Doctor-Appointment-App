@@ -19,12 +19,12 @@ const PatientSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    username: {
-        type: String,
-        trim: true,
-        unique: true,
-        index: true
-    },
+    // username: {
+    //     type: String,
+    //     trim: true,
+    //     unique: true,
+    //     index: true
+    // },
     firstName: {
         type: String,
         trim: true,
@@ -36,11 +36,14 @@ const PatientSchema = new mongoose.Schema({
     address: {
         type: String,
         trim: true,
-        required: true
+        // required: true
     },
     zipCode: {
         type: Number,
-        required: true
+        // required: true
+    },
+    profilePic: {
+        type: String,
     },
     profilePic: {
         type: String,
@@ -48,17 +51,17 @@ const PatientSchema = new mongoose.Schema({
     cityId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City',
-        required: true
+        // required: true
     },
     phone: {
         type: String,
         trim: true,
-        required: true
+        // required: true
     },
     birthDate: {
         type: Date,
         trim: true,
-        required: true
+        // required: true
     },
     gender: {
         type: String,
@@ -72,7 +75,7 @@ const PatientSchema = new mongoose.Schema({
     messages: [{            
         type: mongoose.Schema.Types.ObjectId,
         ref:'Message',
-        required: true,
+        // required: true,
     }],
     messageCount: {
         type: Number,
