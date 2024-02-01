@@ -45,7 +45,7 @@ const DoctorSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    address: {
+    street: {
         type: String,
         trim: true,
         required: true
