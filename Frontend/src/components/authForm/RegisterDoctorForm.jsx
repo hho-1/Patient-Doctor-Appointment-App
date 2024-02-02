@@ -27,6 +27,8 @@ export const registerSchema = object().shape({
     .required("Straße ist verpflichted"),
   zipCode: string()
     .required("PLZ ist verpflichted"),
+  branch: string()
+    .required("PLZ ist verpflichted"),
 })
 
 
@@ -78,15 +80,15 @@ const RegisterDoctorForm = () => {
   
   
   return (
-    <div className='register-form-page h-[87vh] md:h-[88vh] md:py-11 text-center flex flex-col items-center'>
-      <div className='flex justify-center items-center mb-5 lg:mb-5'>
+    <div className='register-form-page h-[90vh] md:h-[88vh] md:py-11 text-center flex flex-col items-center'>
+      <div className='flex justify-center items-center mb-12 lg:mb-5'>
         <div className='flex justify-center items-center title-heading mr-3 rounded-md lg:rounded-lg p-2'>
           <img src={doctor} alt="patientIcon" width={20} height={30}/>
           <h1 className='text-[#38638D] font-bold ml-1 md:text-lg xl:text-2xl'>Ärztin/Arzt</h1>
         </div>
         <h1 className='reg-title my-4 md:my-5 text-2xl md:text-3xl xl:text-4xl'>Registrierung</h1>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className='register-form mt-4 md:mt-10 xl:mt-0 flex flex-col items-center justify-center'>
+      <form onSubmit={handleSubmit(onSubmit)} className='register-form mt-10 md:mt-6 lg:mt-12 xl:mt-0 flex flex-col items-center justify-center'>
       
         <div className='flex flex-col items-center xl:flex-row xl:justify-between w-full'>
           <div className="relative w-[330px] xl:min-w-[180px] sm:w-[400px] md:w-[300px] lg:w-[360px] xl:mx-1 xl:w-[300px] text-[#38638D]">
@@ -117,6 +119,36 @@ const RegisterDoctorForm = () => {
             {errors.lastName && (
               <p className="text-xs italic text-cyan-100">{errors.lastName.message}</p>
             )}
+          </div>
+        </div>
+        <div className='flex flex-col items-center xl:flex-row xl:justify-between w-full 2xl:mt-4'>
+          <div className="relative mt-2 w-[330px] xl:min-w-[180px] sm:w-[400px] md:w-[300px] lg:w-[360px] xl:mx-1 xl:w-[300px] text-[#38638D]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
+            </svg>
+
+            <input
+              type="text"
+              {...register('title')}
+              placeholder="Titel"
+              className="w-full pl-[3rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
+            />
+            {errors.title && (
+            <p className="text-xs italic text-cyan-100">{errors.title.message}</p>
+          )}
+          </div>
+          <div className="relative mt-2 w-[330px] xl:min-w-[180px] sm:w-[400px] md:w-[300px] lg:w-[360px] xl:mx-1 xl:w-[300px] focus:border-indigo-600 shadow-sm rounded-lg text-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+            </svg>
+
+            <select defaultValue="Branch" {...register('branch')} className="w-full pl-[3rem] h-12 px-3 py-2 text-md text-[#38638D] bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
+              <option value="Branch" disabled hidden className='text-[#38638D]'>Branch</option>
+              <option value="Zahnarzt/ärztin">Zahnarzt/ärztin</option>
+              <option value="Hausarzt/ärztin">Hausarzt/ärztin</option>
+              <option value="HNO">HNO</option>
+              <option value="Andere">Andere</option>
+            </select>
           </div>
         </div>
         <div className='flex flex-col items-center xl:flex-row xl:justify-between w-full 2xl:mt-4'>
@@ -190,11 +222,11 @@ const RegisterDoctorForm = () => {
               <option value="Geschlecht" disabled hidden className='text-[#38638D]'>Geschlecht</option>
               <option value="Female">Female</option>
               <option value="Male">Male</option>
-              <option value="Others">Others</option>
+              <option value="Others">Andere</option>
             </select>
           </div>
         </div>
-        <fieldset className='w-[330px] sm:w-[400px] md:w-[300px] lg:w-[360px] xl:w-[500px] 2xl:min-w-[664px] border-2 py-3 px-2 mt-2 mb-10 md:mb-12 rounded-lg'>
+        <fieldset className='w-[330px] sm:w-[400px] md:w-[300px] lg:w-[360px] xl:w-[500px] 2xl:min-w-[664px] border-2 py-3 px-2 mt-2 mb-10 md:mb-6 rounded-lg'>
           <legend  className='text-white'>Adresse</legend>
           <div className='w-[310px] sm:w-[380px] md:w-[280px] lg:w-[340px] xl:min-w-[480px] 2xl:min-w-[646px] 2xl:mt-2'>
             <div className="relative max-w-[652px] 2xl:w-[646px] xl:min-w-[420px] text-[#38638D] w-full min-w-[200px] h-12">
@@ -251,7 +283,7 @@ const RegisterDoctorForm = () => {
         </fieldset>
         
 
-        <button type='submit' className='flex justify-center register-button duration-150 mx-auto md:mt-6'>REGISTRIEREN</button>
+        <button type='submit' className='flex justify-center register-button duration-150 mx-auto'>REGISTRIEREN</button>
         
       </form>
     </div>

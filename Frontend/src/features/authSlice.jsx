@@ -26,7 +26,7 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, { payload }) => {
       state.loading = false;
-      state.currentUser = payload?.data?.email;
+      state.currentUser = payload?.patient ? payload?.patient.email : (payload?.doctor ? payload?.doctor.email : payload?.admin.email);
       state.token = payload?.key;
       state.error = false;
     },

@@ -58,8 +58,8 @@ const RegisterPatientForm = () => {
   })
 
   const onSubmit = (data) => {
-    console.log(data)
     regPatient(data)
+    console.log(data)
   }
 
   const [isPasswordHidden, setPasswordHidden] = useState(true)
@@ -239,7 +239,7 @@ const RegisterPatientForm = () => {
             <input
               type="string"
               {...register('cityName')}
-              placeholder="City"
+              placeholder="Ort"
               className="w-full pl-[3rem] h-12 pr-3 py-2 appearance-none bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg text-lg"
             />
             {errors.cityName && (

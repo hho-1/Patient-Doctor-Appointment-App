@@ -20,12 +20,6 @@ const DoctorSchema = new mongoose.Schema({
         unique: true,
         index: true
     },
-    username: {
-        type: String,
-        trim: true,
-        unique: true,
-        index: true
-    },
     password: {
         type: String,
         trim: true,
@@ -58,15 +52,17 @@ const DoctorSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City'
     },
+    cityName: {
+        type: String,
+        trim: true
+    },
     phone: {
         type: String,
         trim: true,
-        required: true
     },
     birthDate: {
-        type: Date,
-        trim: true,
-        required: true
+        type: String,
+        trim: true
     },
     gender: {
         type: String,
