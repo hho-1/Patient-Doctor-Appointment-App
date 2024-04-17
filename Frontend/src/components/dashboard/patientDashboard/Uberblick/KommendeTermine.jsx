@@ -1,5 +1,5 @@
-import React from 'react'
-import Termine from './Termine'
+import React from "react";
+import Termine from "./Termine";
 import moment from "moment";
 
 const KommendeTermine = ({
@@ -20,7 +20,7 @@ const KommendeTermine = ({
   );
   pastAppointments.push(
     ...appointmentsOfThisPatient.filter((item) => {
-      return item.date < dateToday && (item.isCancelled === false);
+      return item.date < dateToday && item.isDeleted === false;
     })
   );
   //console.log(pastAppointments);
@@ -46,7 +46,7 @@ const KommendeTermine = ({
               <div key={index}>
                 <div
                   key={index}
-                  className="mx-auto w-[300px] hover:cursor-pointer"
+                  className="w-full hover:cursor-pointer"
                   onClick={() => setTermin(appo)}
                 >
                   <Termine {...appo} />
@@ -58,4 +58,4 @@ const KommendeTermine = ({
   );
 };
 
-export default KommendeTermine
+export default KommendeTermine;
