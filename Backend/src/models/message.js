@@ -10,33 +10,41 @@ const { userTypes } = require('../configs/constraints')
 const MessageSchema = new mongoose.Schema({
     senderUserId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         index: true,
     },
     senderUserType: {
         type: String,
-        required: true,
         enum: userTypes,
+    },
+    senderName: {
+        type: String,
+        trim: true,
     },
     receiverUserId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         index: true,
     },
     receiverUserType: {
         type: String,
-        required: true,
         enum: userTypes,
+    },
+    receiverName: {
+        type: String,
+        trim: true,
     },
     subject: {
         type: String,
-        required: true,
         trim: true,
     },
-    message: {
+    content: {
         type: String,
         required: true,
     },
+    from: {
+        type: String,
+        trim: true,
+    },
+
 }, { collection: 'messages', timestamps: true });
 
 module.exports = mongoose.model('Message', MessageSchema);

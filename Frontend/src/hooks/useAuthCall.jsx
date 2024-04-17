@@ -1,14 +1,16 @@
 import axios from "axios";
 import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const url = process.env.REACT_APP_BASE_URL
 
 const useAuthCall = () => {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { token, userType} = useSelector(state => state.auth);
 
     /* -------------------------------------------------------------------------- */
     /*                               The Login Process                            */
@@ -19,7 +21,8 @@ const useAuthCall = () => {
         try {
             const { data } = await axios.post(`${url}/auth/login`,userData)
             dispatch(loginSuccess(data))
-            navigate("/")
+            
+            navigate(`/${data.userType}`)
         } catch (error) {
             console.log(error.message);
             dispatch(fetchFail())
@@ -28,12 +31,15 @@ const useAuthCall = () => {
     /* -------------------------------------------------------------------------- */
     /*                              The Logout Process                            */
     /* -------------------------------------------------------------------------- */
-
-
+    
     const logout = async () => {  
         dispatch(fetchStart())
         try {
-            await axios.post(`${url}/auth/logout`)
+            await axios.post(`${url}/auth/logout`, null,{
+                headers: {
+                    Authorization: `Token ${token}`,
+                  },
+            })
             dispatch(logoutSuccess())
         } catch (error) {
             dispatch(fetchFail())
@@ -51,7 +57,7 @@ const useAuthCall = () => {
             const { data } = await axios.post(`${url}/auth/register`, userData)
             dispatch(registerSuccess(data))
             console.log(data)
-            navigate("/")
+            navigate("/login")
         } catch (error) {
             dispatch(fetchFail())
             console.log(error);
@@ -68,7 +74,7 @@ const useAuthCall = () => {
             const { data } = await axios.post(`${url}/auth/register`, userData)
             dispatch(registerSuccess(data))
             console.log(data)
-            navigate("/")
+            navigate("/login")
         } catch (error) {
             dispatch(fetchFail())
             console.log(error);

@@ -5,6 +5,7 @@ const Message = require('../models/message');
 const Doctor = require('../models/doctor')
 const Patient = require('../models/patient')
 const Admin = require('../models/admin')
+const sendMail = require('../helpers/sendMail')
 
 module.exports = {
 
@@ -21,7 +22,7 @@ module.exports = {
                 </ul>
             `
         */
-
+//const patientID = req.query.patientID
         const data = await res.getModelList(Message);
 
         // FOR REACT PROJECT:
@@ -48,54 +49,65 @@ module.exports = {
 
         const data = await Message.create(req.body);
 
-        if(req.body.senderUserType === "Admin"){
+        if(req.body.from){
+            sendMail(
+                req.body.from,    //from
+                req.body.subject,     //subject
+                req.body.content
+            )
+        }
+        
+        else{
+           if(req.body.senderUserType === "admin"){
             await Admin.updateOne({_id: data.senderUserId}, {$push: {messages: data.id}})
 
-            if(req.body.receiverUserType === "Doctor"){
+            if(req.body.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Doctor.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Patient"){
+            else if(req.body.receiverUserType === "patient"){
                 await Patient.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Patient.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Admin"){
+            else if(req.body.receiverUserType === "admin"){
                 await Admin.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Admin.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
         }
-        else if(req.body.senderUserType === "Doctor"){
+        else if(req.body.senderUserType === "doctor"){
             await Doctor.updateOne({_id: data.senderUserId}, {$push: {messages: data.id}})
             
-            if(req.body.receiverUserType === "Doctor"){
+            if(req.body.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Doctor.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Patient"){
+            else if(req.body.receiverUserType === "patient"){
                 await Patient.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Patient.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Admin"){
+            else if(req.body.receiverUserType === "admin"){
                 await Admin.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Admin.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
         }
-        else if(req.body.senderUserType === "Patient"){
+        else if(req.body.senderUserType === "patient"){
             await Patient.updateOne({_id: data.senderUserId}, {$push: {messages: data.id}})
 
-            if(req.body.receiverUserType === "Doctor"){
+            if(req.body.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Doctor.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Patient"){
+            else if(req.body.receiverUserType === "patient"){
                 await Patient.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Patient.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
-            else if(req.body.receiverUserType === "Admin"){
+            else if(req.body.receiverUserType === "admin"){
                 await Admin.updateOne({_id: data.receiverUserId}, {$push: {messages: data.id}})
                 await Admin.updateOne({_id: data.receiverUserId}, {$inc: {messageCount: +1}})
             }
+        } 
         }
+        
 
         // await Contribution.updateOne({_id: data.contribution_id}, {$push: {comments: data.id}})
         // await Contribution.updateOne({_id: data.contribution_id}, {$inc: {comment_count: +1}})
@@ -113,7 +125,12 @@ module.exports = {
             #swagger.summary = "Get Single Message"
         */
 
-        const data = await Message.findOne({ _id: req.params.id });
+
+        // const data = await Message.findOne({ _id: req.params.id });
+        const data = await Message.find({ 
+            $or: [{ senderUserId: req.params.id }, { receiverUserId: req.params.id }]
+        }).sort({ createdAt: 1 });
+        
 
         res.status(200).send({
             error: false,
@@ -157,50 +174,50 @@ module.exports = {
 
         const message = await Message.findOne({ _id: req.params.id })
         
-        if(message.senderUserType === "Admin"){
+        if(message.senderUserType === "admin"){
             await Admin.updateOne({_id: message.senderUserId}, {$pull: {messages: message.id}})
 
-            if(message.receiverUserType === "Doctor"){
+            if(message.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Doctor.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Patient"){
+            else if(message.receiverUserType === "patient"){
                 await Patient.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Patient.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Admin"){
+            else if(message.receiverUserType === "admin"){
                 await Admin.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Admin.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
         }
-        else if(message.senderUserType === "Doctor"){
+        else if(message.senderUserType === "doctor"){
             await Doctor.updateOne({_id: message.senderUserId}, {$pull: {messages: message.id}})
 
-            if(message.receiverUserType === "Doctor"){
+            if(message.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Doctor.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Patient"){
+            else if(message.receiverUserType === "patient"){
                 await Patient.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Patient.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Admin"){
+            else if(message.receiverUserType === "admin"){
                 await Admin.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Admin.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
         }
-        if(message.senderUserType === "Patient"){
+        if(message.senderUserType === "patient"){
             await Patient.updateOne({_id: message.senderUserId}, {$pull: {messages: message.id}})
 
-            if(message.receiverUserType === "Doctor"){
+            if(message.receiverUserType === "doctor"){
                 await Doctor.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Doctor.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Patient"){
+            else if(message.receiverUserType === "patient"){
                 await Patient.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Patient.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }
-            else if(message.receiverUserType === "Admin"){
+            else if(message.receiverUserType === "admin"){
                 await Admin.updateOne({_id: message.receiverUserId}, {$pull: {messages: message.id}})
                 await Admin.updateOne({_id: message.receiverUserId}, {$inc: {messageCount: -1}})
             }

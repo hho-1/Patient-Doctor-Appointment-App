@@ -62,6 +62,39 @@
         }
       }
     },
+    "/auth/register": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "branch": {
+                  "example": "any"
+                },
+                "userType": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/auth/logout": {
       "post": {
         "tags": [
@@ -1505,12 +1538,12 @@
         }
       }
     },
-    "/dayschedules/": {
+    "/aufgabes/": {
       "get": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "List DaySchedules",
+        "summary": "List Aufgabes",
         "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
         "responses": {
           "200": {
@@ -1520,10 +1553,20 @@
       },
       "post": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "Create DaySchedule",
+        "summary": "Create Aufgabe",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Aufgabe"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -1531,12 +1574,12 @@
         }
       }
     },
-    "/dayschedules/{id}": {
+    "/aufgabes/{id}": {
       "get": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "Get Single DaySchedule",
+        "summary": "Get Single Aufgabe",
         "description": "",
         "parameters": [
           {
@@ -1554,9 +1597,9 @@
       },
       "put": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "Update DaySchedule",
+        "summary": "Update Aufgabe",
         "description": "",
         "parameters": [
           {
@@ -1564,6 +1607,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Aufgabe"
+            }
           }
         ],
         "responses": {
@@ -1574,9 +1625,9 @@
       },
       "delete": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "Delete DaySchedule",
+        "summary": "Delete Aufgabe",
         "description": "",
         "parameters": [
           {
@@ -1597,9 +1648,9 @@
       },
       "patch": {
         "tags": [
-          "DaySchedules"
+          "Aufgabes"
         ],
-        "summary": "Update DaySchedule",
+        "summary": "Update Aufgabe",
         "description": "",
         "parameters": [
           {
@@ -1607,6 +1658,151 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Aufgabe"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/notizs/": {
+      "get": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "List Notizs",
+        "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "Create Notiz",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notiz"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/notizs/{id}": {
+      "get": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "Get Single Notiz",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "Update Notiz",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notiz"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "Delete Notiz",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Notizs"
+        ],
+        "summary": "Update Notiz",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notiz"
+            }
           }
         ],
         "responses": {
@@ -1779,6 +1975,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "from": {
+                  "example": "any"
+                },
+                "subject": {
+                  "example": "any"
+                },
+                "content": {
+                  "example": "any"
+                },
                 "senderUserType": {
                   "example": "any"
                 },
@@ -1840,6 +2045,117 @@
           }
         }
       }
+    },
+    "/events/": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "List Events",
+        "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create Event",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get Single Event",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Update Event",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Delete Event",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Update Event",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1861,6 +2177,10 @@
               "example": true
             },
             "index": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
               "type": "boolean",
               "example": true
             }
@@ -2150,9 +2470,9 @@
             "enum": {
               "type": "array",
               "example": [
-                "Admin",
-                "Doctor",
-                "Patient"
+                "admin",
+                "doctor",
+                "patient"
               ],
               "items": {
                 "type": "string"
@@ -2490,6 +2810,18 @@
             }
           }
         },
+        "branch": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
         "birthDate": {
           "type": "object",
           "properties": {
@@ -2511,9 +2843,9 @@
             "enum": {
               "type": "array",
               "example": [
-                "male",
-                "female",
-                "others"
+                "Male",
+                "Female",
+                "Others"
               ],
               "items": {
                 "type": "string"
@@ -2543,7 +2875,22 @@
               },
               "ref": {
                 "type": "string",
-                "example": "File"
+                "example": "Event"
+              }
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "Event"
               }
             }
           }
@@ -2557,6 +2904,18 @@
             "default": {
               "type": "boolean",
               "example": true
+            }
+          }
+        },
+        "isApproved": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
             }
           }
         },
@@ -2602,10 +2961,6 @@
             "properties": {
               "type": {
                 "type": "function"
-              },
-              "ref": {
-                "type": "string",
-                "example": "Complaint"
               }
             }
           }
@@ -2621,6 +2976,21 @@
               "ref": {
                 "type": "string",
                 "example": "Message"
+              }
+            }
+          }
+        },
+        "appointments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "Appointment"
               }
             }
           }
@@ -2667,9 +3037,9 @@
             "enum": {
               "type": "array",
               "example": [
-                "Admin",
-                "Doctor",
-                "Patient"
+                "admin",
+                "doctor",
+                "patient"
               ],
               "items": {
                 "type": "string"
@@ -2748,10 +3118,6 @@
             "type": {
               "type": "function"
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "index": {
               "type": "boolean",
               "example": true
@@ -2764,16 +3130,12 @@
             "type": {
               "type": "function"
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "enum": {
               "type": "array",
               "example": [
-                "Admin",
-                "Doctor",
-                "Patient"
+                "admin",
+                "doctor",
+                "patient"
               ],
               "items": {
                 "type": "string"
@@ -2787,10 +3149,6 @@
             "type": {
               "type": "function"
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "index": {
               "type": "boolean",
               "example": true
@@ -2803,16 +3161,12 @@
             "type": {
               "type": "function"
             },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
             "enum": {
               "type": "array",
               "example": [
-                "Admin",
-                "Doctor",
-                "Patient"
+                "admin",
+                "doctor",
+                "patient"
               ],
               "items": {
                 "type": "string"
@@ -2836,13 +3190,37 @@
             }
           }
         },
-        "message": {
+        "content": {
           "type": "object",
           "properties": {
             "type": {
               "type": "function"
             },
             "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "from": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
               "type": "boolean",
               "example": true
             }
@@ -2902,10 +3280,6 @@
             "trim": {
               "type": "boolean",
               "example": true
-            },
-            "required": {
-              "type": "boolean",
-              "example": true
             }
           }
         },
@@ -2916,10 +3290,6 @@
               "type": "function"
             },
             "trim": {
-              "type": "boolean",
-              "example": true
-            },
-            "required": {
               "type": "boolean",
               "example": true
             }
@@ -3018,9 +3388,9 @@
             "enum": {
               "type": "array",
               "example": [
-                "male",
-                "female",
-                "others"
+                "Male",
+                "Female",
+                "Others"
               ],
               "items": {
                 "type": "string"

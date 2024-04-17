@@ -27,19 +27,13 @@ const AppointmentSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    // timeEnd: {
-    //     type: String,
-    //     trim: true,
-    //     required: true
-    // },
     patientId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient'
     },
-    complaints: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Complaint',
-    }],
+    complaints: {
+        type: String,
+    },
     insurance: {
         type: String,
         enum: insurance,
@@ -51,9 +45,25 @@ const AppointmentSchema = new mongoose.Schema({
     doctorOpinion: [{
         type: String,
     }],
-    isCancelled: {
+    isReadPat: {
         type: Boolean,
         default: false
+    },
+    isReadDr: {
+        type: Boolean,
+        default: false
+    },
+    isCancelledPat: {
+        type: Boolean,
+        default: false
+    },
+    isCancelledDr: {
+        type: Boolean,
+        default: false
+    },
+    isCancelled:{
+        type: Boolean,
+        default: false 
     },
     cancelUserId:{
         type: mongoose.Schema.Types.ObjectId,
@@ -68,7 +78,11 @@ const AppointmentSchema = new mongoose.Schema({
     cancelReason: {
         type: String,
         trim: true
-    }
+    },
+    weekDays:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'WeekDay'
+    },
     
 }, { collection: 'appointments', timestamps: true })
 

@@ -16,7 +16,6 @@ const WeekDaySchema = new mongoose.Schema({
     name: {
         type: String,
         enum: dayNames,
-        unique: true,
         required: true
     },
     startHour: {
@@ -42,14 +41,25 @@ const WeekDaySchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    hours: [{
-        type: String,
-        trim: true
-    }],
     isHoliday: {
         type: Boolean, 
         default: false
-    }
+    },
+    isFilled: {
+        type: Boolean, 
+        default: false
+    },
+    startingDate:{
+        type: String,
+        trim: true,
+        required: true
+    },
+    endingDate: {
+        type: String,
+        trim: true,
+        required: true
+    },
+
     
 }, { collection: 'weekDays', timestamps: true })
 

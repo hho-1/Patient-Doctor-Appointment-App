@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.d-dashboard {
+    display: flex;
+}
+
+.d-panel-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F1F7FE;
+}
+
+.d-navbar {
+    flex: 3%;
+}
+
+.d-main-content {
+    flex: 97%;
+}
+
+.d-doctor-profile-info{
+    display: none;
+}
+
+.d-main-content-section{
+    height: 94vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-main-content-section-box {
+    
+    height: 92%;
+    width: 92%;
+    border-radius: 26px;
+    overflow: hidden;
+}

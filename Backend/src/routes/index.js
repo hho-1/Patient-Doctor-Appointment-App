@@ -26,8 +26,8 @@ router.use('/contents', require('./content'))
 // branch:
 router.use('/branches', require('./branch'))
 
-// complaint:
-router.use('/complaints', require('./complaint'))
+// service:
+router.use('/services', require('./service'))
 
 // doctor:
 router.use('/doctors', require('./doctor'))
@@ -44,8 +44,11 @@ router.use('/cities', require('./city'))
 // weekDay:
 router.use('/weekdays', require('./weekDay'))
 
-// daySchedule:
-router.use('/dayschedules', require('./daySchedule'))
+// task:
+router.use('/tasks', require('./task'))
+
+// note:
+router.use('/notes', require('./note'))
 
 // file:
 router.use('/files', require('./file'))
@@ -57,6 +60,11 @@ router.use('/documents', require('./document'))
 //messages
 router.use("/messages", require("./message"))
 
+//events
+router.use("/events", require("./event"))
+
+//notifications
+router.use("/notifications", require("./notification"))
 
 
 /* ------------------------------------------------------- */

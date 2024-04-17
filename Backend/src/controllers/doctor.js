@@ -1,7 +1,7 @@
 "use strict"
 
 // Doctor Controller:
-
+const sendMail = require('../helpers/sendMail')
 const Doctor = require('../models/doctor')
 
 module.exports = {
@@ -20,8 +20,9 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(Doctor, {}, ["branchId", "cityId", "complaints"])
-
+        // const data = await res.getModelList(Doctor, {}, ["branchId", "cityId", "services"])
+        const data = await res.getModelList(Doctor)
+    
         // res.status(200).send({
         //     error: false,
         //     details: await res.getModelListDetails(Doctor),
@@ -47,6 +48,7 @@ module.exports = {
         */
 
         const data = await Doctor.create(req.body)
+        
 
         res.status(201).send({
             error: false,
@@ -60,11 +62,26 @@ module.exports = {
             #swagger.summary = "Get Single Doctor"
         */
 
-        const data = await Doctor.findOne({ _id: req.params.id }).populate(["branchId", "cityId", "complaints"])
+
+
+        const data = await Doctor.findOne({ _id: req.params.id }).populate(["files", "appointments", "events","messages"])
+        // const data = await Doctor.findOne({ _id: req.params.id }).populate(["branchId", "cityId", "services","files", "appointments", "events","messages"])
+
+
+        // .populate({
+        //     path: 'files',
+        //     select: 'fileName' // Sadece fileName alanını seçiyoruz
+        // });
+
+
+      
+
 
         res.status(200).send({
             error: false,
             data
+            // data:{...data._doc, "files":[`${req.protocol}://${req.get("host")}/img/${data.files[0]}`,`${req.protocol}://${req.get("host")}/img/${data.files[1]}`]}
+        
         })
     },
 
@@ -79,13 +96,41 @@ module.exports = {
             }
         */
 
-        const data = await Doctor.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
-
-        res.status(202).send({
+        
+           const data = await Doctor.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
+           const dataNew = await Doctor.findOne({ _id: req.params.id }) 
+ 
+           if(req.body.isApproved){
+            sendMail(
+                "hakkioglu19@gmail.com",    //from
+                "Termin Bestätigung",     //subject
+                `
+                    <h2>Arzt/Ärztin:</h2> <p>${dataNew?.title}. ${dataNew?.firstName} ${dataNew?.lastName}</p>
+                    <h2>Zeit:</h2> <p>${(dataNew?.updatedAt)}</p>
+            
+                    <hr/>
+                    <h2>Mitteilung:</h2> <p>Ihre TerminUns-App Konto ist bestätigt worden. Sie können jetzt anfangen, TerminUns-App zu verwenden</p>
+                `
+            )
+           }
+           else if((!req.body.isApproved)) 
+           sendMail(
+            "hakkioglu19@gmail.com",    //from
+            "Termin Bestätigung",     //subject
+            `
+                <h2>Arzt/Ärztin:</h2> <p>${dataNew?.title}. ${dataNew?.firstName} ${dataNew?.lastName}</p>
+                <h2>Zeit:</h2> <p>${(dataNew?.updatedAt)}</p>
+        
+                <hr/>
+                <h2>Mitteilung:</h2> <p>Ihre TerminUns-App Konto Genehmigung ist abgesagt worden. </p>
+            `
+        )
+           res.status(202).send({
             error: false,
             data,
             new: await Doctor.findOne({ _id: req.params.id })
         })
+        
     },
 
     delete: async (req, res) => {

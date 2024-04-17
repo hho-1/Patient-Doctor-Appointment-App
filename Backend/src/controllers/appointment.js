@@ -3,6 +3,10 @@
 // Appointment Controller:
 
 const Appointment = require('../models/appointment')
+const Patient = require('../models/patient')
+const sendMail = require('../helpers/sendMail')
+const EMAIL = process.env.EMAIL
+
 
 module.exports = {
 
@@ -45,6 +49,7 @@ module.exports = {
 
         const data = await Appointment.create(req.body)
 
+
         res.status(201).send({
             error: false,
             data
@@ -56,8 +61,13 @@ module.exports = {
             #swagger.tags = ["Appointments"]
             #swagger.summary = "Get Single Appointment"
         */
-
-        const data = await Appointment.findOne({ _id: req.params.id })
+        const data = await Appointment.find({
+          $or: [
+            { patientId: req.params.id },
+            { doctorId: req.params.id },
+          ],
+        });
+        
 
         res.status(200).send({
             error: false,
@@ -76,12 +86,41 @@ module.exports = {
             }
         */
 
-        const data = await Appointment.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
+        const data0 = await Appointment.findOne({ _id: req.params.id }).populate(["doctorId", "patientId"])    //update edilmeden önceki veri
+
+
+        const data = await Appointment.updateOne({ _id: req.params.id }, req.body, { runValidators: true }).populate(["doctorId", "patientId"])      // update islemi
+        const dataNew = await Appointment.findOne({ _id: req.params.id }).populate(["doctorId", "patientId"])        //update edildikten sonraki veri
+
+        if(req.body.patientId){
+            await Patient.updateOne({_id: dataNew.patientId}, {$push: {appointments: dataNew.id}})
+        }
+        else{
+            if(req.body.isCancelled === false){
+                await Patient.updateOne({_id: data0.patientId}, {$pull: {appointments: data0.id}}) 
+            }
+            
+        }
+        
+
+        //console.log(dataNew)
+        sendMail(
+            `${EMAIL}`,    //from
+            "Termin Bestätigung",     //subject
+            `
+                <h2>Arzt/Ärztin:</h2> <p>${dataNew?.doctorId?.title}. ${dataNew?.doctorId?.firstName} ${dataNew?.doctorId?.lastName}</p>
+                <h2>Zeit:</h2> <p>${dataNew?.date} - ${dataNew?.timeStart}</p>
+                <h2>Addresse:</h2> <p>${dataNew?.doctorId?.street}, ${dataNew?.doctorId?.zipCode}</p>
+                <h2>Name der Patientin / des Patients:</h2> <p>${dataNew?.patientId?.firstName} ${dataNew?.patientId?.lastName}</p>
+                <hr/>
+                <h2>Mitteilung:</h2> <p>Ihr Termin ist vereinbart worden. Bitte kommen Sie pünktlich. Um den Termin zu stornieren, bitte besuchen Sie wieder Ihre TerminUns-App Konto</p>
+            `
+        )
 
         res.status(202).send({
             error: false,
             data,
-            new: await Appointment.findOne({ _id: req.params.id })
+            newData: await Appointment.findOne({ _id: req.params.id })
         })
     },
 

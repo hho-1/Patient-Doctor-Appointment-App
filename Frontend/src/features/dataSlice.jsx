@@ -12,10 +12,16 @@ const dataSlice = createSlice({
     complaints:[],
     doctors:[],
     patients:[],
+    admins:[],
     appointments:[],
     cities:[],
     messages:[],
-    daySchedules: []
+    events:[],
+    weekdays: [],
+    files:[],
+    tasks:[],
+    notes:[],
+    notifications:[], 
   },
   reducers:{
     fetchStart: (state) => {
@@ -24,7 +30,7 @@ const dataSlice = createSlice({
     },
     getDataSuccess: (state, {payload}) => {
       state.loading = false;
-      state[payload.res] = payload.data;
+      state[payload.url] = payload.data;
     },
 
     fetchFail: (state) => {

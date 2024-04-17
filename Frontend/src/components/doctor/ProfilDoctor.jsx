@@ -2,40 +2,40 @@ import React from 'react'
 
 import locationIcon from '../../assets/locationIcon.png'
 import phoneIcon from '../../assets/phone.png'
+import profilImage from '../../assets/profil_image2.png'
 import webIcon from '../../assets/web.png'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 
 
-const DoctorProfil = ({ branchId, cityId, phone, website, title, firstName, lastName, avatar }) => {
 
-  const { currentUser } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const check = () => {
-    currentUser ? navigate("/patient") : navigate("/login")
-  }
+const DoctorProfil = ({ id, branchId,zipCode, cityId, phone, website, title, firstName, lastName, avatar,cityName }) => {
+ 
+  const URL = process.env.REACT_APP_BASE_URL
+  const fileImage = avatar && `${URL}/img/${id.slice(-15)}.jpg`
+
+
+
 
   return (
     <>
     <div className='flex flex-col justify-center items-center p-1 profil-doctor'>
-      <img className='doctor-image' src={avatar ? avatar : 'https://www.thewmch.com/wp-content/uploads/2023/02/female-doctor-using-her-digital-tablet-free-vector.jpg'} alt="doctor-pic"/>
+    <img className='doctor-image' src={fileImage || profilImage} alt="doctor-pic"/>
       <h1 className='text-xl font-bold doctor-profil-name'> {title}. {firstName} {lastName}</h1>
       <h2 className='text-xl doctor-profil-name'>{branchId?.name}</h2>
       </div>  
       <div className='flex justify-start doctor-profil-location'>
-        <img src={locationIcon} className="me-2 w-4 h-6" alt="locationIcon" />
-        <h3>{cityId?.name}</h3>
+        <img src={locationIcon} className="mr-3 w-4 h-6" alt="locationIcon" />
+        <h3>{cityId?.name || cityName || zipCode % 2=== 0 ? "Berlin" : "Köln"}</h3>
       </div>
       <div className='flex doctor-profil-phone'>
-        <img src={phoneIcon} className="me-1 w-5 h-5" alt="phoneIcon" />
+        <img src={phoneIcon} className="mr-1 w-5 h-5" alt="phoneIcon" />
         <h3>{phone}</h3>
       </div>
       <div className='flex doctor-profil-website'>
-      <img src={webIcon} className="me-1 w-6 h-6" alt="webIcon" />
+      <img src={webIcon} className="mr-1 w-6 h-6" alt="webIcon" />
       {website ? <a href="www.example.com"> {website}</a> : "Keine Webseite Vorhanden"}
       </div>
-      <button className='flex justify-center termin-button duration-150 mx-auto' onClick={() => check()}>TERMIN VEREINBAREN</button>
+      <p className='w-[300px] text-center mx-auto mt-6 border-4 border-main-light-blue2 bg-main-light-blue text-main-dark-blue p-5 rounded-lg'>Bitte wählen Sie einen Zeitpunkt im Kalender aus, um einen Termin zu vereinbaren.</p>
       
     
     </>

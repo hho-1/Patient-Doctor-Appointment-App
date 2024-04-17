@@ -20,6 +20,7 @@ const DoctorSchema = new mongoose.Schema({
         unique: true,
         index: true
     },
+
     password: {
         type: String,
         trim: true,
@@ -60,6 +61,10 @@ const DoctorSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    branch:{
+        type: String,
+        trim: true,
+    },
     birthDate: {
         type: String,
         trim: true
@@ -72,13 +77,24 @@ const DoctorSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
+    doc: {
+        type: String,
+    },
     files: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'File'
     }],
+    events: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    }],
     isActive: {
         type: Boolean,
         default: true
+    },
+    isApproved: {
+        type: Boolean,
+        default: false
     },
     about: {
         type: String,
@@ -91,17 +107,32 @@ const DoctorSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    complaints: [{            
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Complaint'
-    }],
     messages: [{            
         type: mongoose.Schema.Types.ObjectId,
         ref:'Message'
     }],
+    // services: [{            
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref:'Service'
+    // }],
+    services: [{            
+        type: String
+    }],
+    appointments:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Appointment'
+    }],
+    files: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    }],
     messageCount: {
         type: Number,
         default: 0
+    },
+    isChecked: {
+        type: Boolean,
+        default: true,
     }
     
 }, { collection: 'doctors', timestamps: true })

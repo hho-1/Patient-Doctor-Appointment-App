@@ -5,7 +5,8 @@
 const WeekDay = require('../models/weekDay')
 
 const Appointment = require('../models/appointment')
-const DaySchedule = require('../models/daySchedule')
+const Doctor = require('../models/doctor')
+const { get } = require('mongoose')
 
 module.exports = {
 
@@ -23,7 +24,7 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(WeekDay, {}, "hours")
+        const data = await res.getModelList(WeekDay)
 
         // res.status(200).send({
         //     error: false,
@@ -49,6 +50,7 @@ module.exports = {
 
         const data = await WeekDay.create(req.body)
 
+        // await Appointment.update({ _id: weekDay.doctorId }, { $push: { weekDays: weekDay._id } });
 
         let getDaysArray = function(start, end) {
             let arr = []
@@ -57,7 +59,7 @@ module.exports = {
             }
             return arr;
         };   
-        let daylist = getDaysArray(new Date("2024-01-30"),new Date("2024-04-30"));
+        let daylist = getDaysArray(req.body.startingDate, req.body.endingDate);
         const dayArray = daylist.map((v)=>v.toISOString().slice(0,10)) 
 
         //console.log(dayArray)
@@ -170,17 +172,12 @@ module.exports = {
                             const newApp = await Appointment.create({
                                 doctorId: data.doctorId, 
                                 date: dayArray[i],
-                                timeStart: appoArray[j]
+                                timeStart: appoArray[j],
+                                weekDays:data._id
                             })
                             appointmentsOfTheDay.push(newApp._id)
+                            await Doctor.updateOne({_id: data.doctorId}, {$push: {appointments: newApp._id}})
                         }
-                        await DaySchedule.create({
-                            doctorId: data.doctorId, 
-                            day: dayArray[i],
-                            hours: appoArray,
-                            dayName: tagName,
-                            appointmentsOfTheDay: appointmentsOfTheDay
-                        })
                         
                     }
                     else{
@@ -192,18 +189,13 @@ module.exports = {
                             const newApp = await Appointment.create({
                                 doctorId: data.doctorId, 
                                 date: dayArray[i],
-                                timeStart: appoArray[j]
+                                timeStart: appoArray[j],
+                                weekDays:data._id
                             })
                             appointmentsOfTheDay.push(newApp._id)
+                            await Doctor.updateOne({_id: data.doctorId}, {$push: {appointments: newApp._id}})
                         }
-
-                        await DaySchedule.create({
-                            doctorId: data.doctorId, 
-                            day: dayArray[i],
-                            hours: appoArray,
-                            dayName: tagName,
-                            appointmentsOfTheDay: appointmentsOfTheDay
-                        })
+                        
                     }  
                 }
             }
@@ -227,7 +219,7 @@ module.exports = {
             #swagger.summary = "Get Single WeekDay"
         */
 
-        const data = await WeekDay.findOne({ _id: req.params.id }).populate("hours")
+        const data = await WeekDay.findOne({ _id: req.params.id })
 
         res.status(200).send({
             error: false,
@@ -262,7 +254,8 @@ module.exports = {
         */
 
         const data = await WeekDay.deleteOne({ _id: req.params.id })
-
+        await Appointment.deleteMany({ weekDays: req.params.id });
+        
         res.status(data.deletedCount ? 204 : 404).send({
             error: !data.deletedCount,
             data
