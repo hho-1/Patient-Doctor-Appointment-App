@@ -36,7 +36,6 @@ const document = {
 		"Appointment": require('./src/models/appointment').schema.obj,
 		"Branch": require('./src/models/branch').schema.obj,
 		"City": require('./src/models/city').schema.obj,
-		"Complaint": require('./src/models/complaint').schema.obj,
 		"Content": require('./src/models/content').schema.obj,
 		"ContentCategory": require('./src/models/contentCategory').schema.obj,
 		"Doctor": require('./src/models/doctor').schema.obj,

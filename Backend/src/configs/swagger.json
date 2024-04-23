@@ -716,12 +716,12 @@
         }
       }
     },
-    "/complaints/": {
+    "/services/": {
       "get": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "List Complaints",
+        "summary": "List Services",
         "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
         "responses": {
           "200": {
@@ -731,9 +731,9 @@
       },
       "post": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "Create Complaint",
+        "summary": "Create Service",
         "description": "",
         "parameters": [
           {
@@ -741,7 +741,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Complaint"
+              "$ref": "#/definitions/Service"
             }
           }
         ],
@@ -752,12 +752,12 @@
         }
       }
     },
-    "/complaints/{id}": {
+    "/services/{id}": {
       "get": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "Get Single Complaint",
+        "summary": "Get Single Service",
         "description": "",
         "parameters": [
           {
@@ -775,9 +775,9 @@
       },
       "put": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "Update Complaint",
+        "summary": "Update Service",
         "description": "",
         "parameters": [
           {
@@ -791,7 +791,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Complaint"
+              "$ref": "#/definitions/Service"
             }
           }
         ],
@@ -803,9 +803,9 @@
       },
       "delete": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "Delete Complaint",
+        "summary": "Delete Service",
         "description": "",
         "parameters": [
           {
@@ -826,9 +826,9 @@
       },
       "patch": {
         "tags": [
-          "Complaints"
+          "Services"
         ],
-        "summary": "Update Complaint",
+        "summary": "Update Service",
         "description": "",
         "parameters": [
           {
@@ -842,7 +842,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Complaint"
+              "$ref": "#/definitions/Service"
             }
           }
         ],
@@ -1538,12 +1538,12 @@
         }
       }
     },
-    "/aufgabes/": {
+    "/tasks/": {
       "get": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "List Aufgabes",
+        "summary": "List Tasks",
         "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
         "responses": {
           "200": {
@@ -1553,9 +1553,9 @@
       },
       "post": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "Create Aufgabe",
+        "summary": "Create Task",
         "description": "",
         "parameters": [
           {
@@ -1563,7 +1563,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aufgabe"
+              "$ref": "#/definitions/Task"
             }
           }
         ],
@@ -1574,12 +1574,12 @@
         }
       }
     },
-    "/aufgabes/{id}": {
+    "/tasks/{id}": {
       "get": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "Get Single Aufgabe",
+        "summary": "Get Single Task",
         "description": "",
         "parameters": [
           {
@@ -1597,9 +1597,9 @@
       },
       "put": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "Update Aufgabe",
+        "summary": "Update Task",
         "description": "",
         "parameters": [
           {
@@ -1613,7 +1613,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aufgabe"
+              "$ref": "#/definitions/Task"
             }
           }
         ],
@@ -1625,9 +1625,9 @@
       },
       "delete": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "Delete Aufgabe",
+        "summary": "Delete Task",
         "description": "",
         "parameters": [
           {
@@ -1648,9 +1648,9 @@
       },
       "patch": {
         "tags": [
-          "Aufgabes"
+          "Tasks"
         ],
-        "summary": "Update Aufgabe",
+        "summary": "Update Task",
         "description": "",
         "parameters": [
           {
@@ -1664,7 +1664,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aufgabe"
+              "$ref": "#/definitions/Task"
             }
           }
         ],
@@ -1675,12 +1675,12 @@
         }
       }
     },
-    "/notizs/": {
+    "/notes/": {
       "get": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "List Notizs",
+        "summary": "List Notes",
         "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
         "responses": {
           "200": {
@@ -1690,9 +1690,9 @@
       },
       "post": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "Create Notiz",
+        "summary": "Create Note",
         "description": "",
         "parameters": [
           {
@@ -1700,7 +1700,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Notiz"
+              "$ref": "#/definitions/Note"
             }
           }
         ],
@@ -1711,12 +1711,12 @@
         }
       }
     },
-    "/notizs/{id}": {
+    "/notes/{id}": {
       "get": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "Get Single Notiz",
+        "summary": "Get Single Note",
         "description": "",
         "parameters": [
           {
@@ -1734,9 +1734,9 @@
       },
       "put": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "Update Notiz",
+        "summary": "Update Note",
         "description": "",
         "parameters": [
           {
@@ -1750,7 +1750,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Notiz"
+              "$ref": "#/definitions/Note"
             }
           }
         ],
@@ -1762,9 +1762,9 @@
       },
       "delete": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "Delete Notiz",
+        "summary": "Delete Note",
         "description": "",
         "parameters": [
           {
@@ -1785,9 +1785,9 @@
       },
       "patch": {
         "tags": [
-          "Notizs"
+          "Notes"
         ],
-        "summary": "Update Notiz",
+        "summary": "Update Note",
         "description": "",
         "parameters": [
           {
@@ -1801,7 +1801,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Notiz"
+              "$ref": "#/definitions/Note"
             }
           }
         ],
@@ -2065,6 +2065,20 @@
         ],
         "summary": "Create Event",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userType": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -2148,6 +2162,143 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/notifications/": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "List Notifications",
+        "description": "  You can send query with endpoint for search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Create Notification",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/notifications/{id}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Get Single Notification",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Update Notification",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Delete Notification",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Update Notification",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
           }
         ],
         "responses": {
@@ -2247,6 +2398,14 @@
             "required": {
               "type": "boolean",
               "example": true
+            }
+          }
+        },
+        "avatar": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
             }
           }
         },
@@ -2383,17 +2542,10 @@
           }
         },
         "complaints": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "function"
-              },
-              "ref": {
-                "type": "string",
-                "example": "Complaint"
-              }
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
             }
           }
         },
@@ -2438,6 +2590,54 @@
               "type": {
                 "type": "function"
               }
+            }
+          }
+        },
+        "isReadPat": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        },
+        "isReadDr": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        },
+        "isCancelledPat": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        },
+        "isCancelledDr": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
             }
           }
         },
@@ -2499,6 +2699,18 @@
               "example": true
             }
           }
+        },
+        "weekDays": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "WeekDay"
+            }
+          }
         }
       }
     },
@@ -2524,27 +2736,6 @@
       }
     },
     "City": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "function"
-            },
-            "trim": {
-              "type": "boolean",
-              "example": true
-            },
-            "required": {
-              "type": "boolean",
-              "example": true
-            }
-          }
-        }
-      }
-    },
-    "Complaint": {
       "type": "object",
       "properties": {
         "name": {
@@ -2865,6 +3056,14 @@
             }
           }
         },
+        "doc": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            }
+          }
+        },
         "files": {
           "type": "array",
           "items": {
@@ -2954,17 +3153,6 @@
             }
           }
         },
-        "complaints": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "function"
-              }
-            }
-          }
-        },
         "messages": {
           "type": "array",
           "items": {
@@ -2976,6 +3164,17 @@
               "ref": {
                 "type": "string",
                 "example": "Message"
+              }
+            }
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
               }
             }
           }
@@ -3004,6 +3203,18 @@
             "default": {
               "type": "number",
               "example": 0
+            }
+          }
+        },
+        "isChecked": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": true
             }
           }
         }
@@ -3143,6 +3354,18 @@
             }
           }
         },
+        "senderName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
         "receiverUserId": {
           "type": "object",
           "properties": {
@@ -3174,15 +3397,23 @@
             }
           }
         },
-        "subject": {
+        "receiverName": {
           "type": "object",
           "properties": {
             "type": {
               "type": "function"
             },
-            "required": {
+            "trim": {
               "type": "boolean",
               "example": true
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
             },
             "trim": {
               "type": "boolean",
@@ -3197,18 +3428,6 @@
               "type": "function"
             },
             "required": {
-              "type": "boolean",
-              "example": true
-            }
-          }
-        },
-        "name": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "function"
-            },
-            "trim": {
               "type": "boolean",
               "example": true
             }
@@ -3429,6 +3648,36 @@
             }
           }
         },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "Event"
+              }
+            }
+          }
+        },
+        "appointments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "Appointment"
+              }
+            }
+          }
+        },
         "messageCount": {
           "type": "object",
           "properties": {
@@ -3438,6 +3687,18 @@
             "default": {
               "type": "number",
               "example": 0
+            }
+          }
+        },
+        "isChecked": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": true
             }
           }
         }
