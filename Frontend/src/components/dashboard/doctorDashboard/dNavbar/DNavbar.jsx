@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./dNavbar.css";
 import setting from "../../../../assets/setting2.png";
 import letter from "../../../../assets/letter.png";
@@ -16,8 +16,7 @@ const DNavbar = () => {
 
   const { getSingleData, getData } = useDataCall();
   const { userId } = useSelector((state) => state.auth);
-  const [notificationNumber, setNotificationNumber] = useState(0);
-  let notificationsArray = [];
+  
   const [showModal, setShowModal] = React.useState(false);
 
   useEffect(() => {
