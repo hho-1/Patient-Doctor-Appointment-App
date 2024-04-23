@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import "./pNavbar.css"
 import setting from "../../../../assets/setting2.png"
 import letter from "../../../../assets/letter.png"
@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router'
 import useDataCall from "../../../../hooks/useDataCall";
 import NotificationModal from "./NotificationModal";
 import moment from "moment";
+
 
 const PNavbar = () => {
 
@@ -24,13 +25,12 @@ const PNavbar = () => {
       getData("notifications");
   
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      console.log("findAppo:",findAppo);
     }, []);
   
     // const todayDate = moment().format("YYYY-MM-DD")
     const tomorrow  = moment().add(1, 'days');
     const findAppo = appointments?.filter(item=>(item.date===tomorrow.format('YYYY-MM-DD') && item.isReadPat===false) || (item.isCancelledDr && item.isReadPat===false))
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     let findUser = [];
     let messageArray = [];
   
