@@ -107,3 +107,6 @@ Authentication and Authorization:
 * Patients and doctors can edit their profiles whenever they want, they can add profile pictures.
 * Dark theme is coming soon...
 * language options is also in creation process...
+
+### Docker Pull Command: 
+docker pull hho400/terminuns-app
