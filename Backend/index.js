@@ -84,9 +84,9 @@ app.use(require('./src/routes'))
 app.use(require('./src/middlewares/errorHandler'))
 
 // RUN SERVER:
-//app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`));
-app.listen("8000", "0.0.0.0", () => console.log(`http://127.0.0.1:8000`));
+app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`));
+//app.listen("8000", "0.0.0.0", () => console.log(`http://127.0.0.1:8000`));       // for docker
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-//  require('./src/helpers/sync')()
+// require('./src/helpers/sync')()
