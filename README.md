@@ -2,39 +2,39 @@
 
 This project includes a full-stack web application that allows patients and doctors to schedule and manage appointments.
 Technologies and used - tools:
-* Frontend:
-- React
-- Redux Toolkit
-- Hooks (such as useCallback, useRef, useEffect, useState)
-- Axios
-- Toastify
-- TailwindCSS
-- Material-UI (Mui)
-- Formik-Yup
-- React-Google-Charts
-- React-DOM
-- React-Calendar
-- Tremor
-- React-Scripts
-- Redux-Persist
-- Fullcalendar
-- React-Hook-Form
+- Frontend:
+  - React
+  - Redux Toolkit
+  - Hooks (such as useCallback, useRef, useEffect, useState)
+  - Axios
+  - Toastify
+  - TailwindCSS
+  - Material-UI (Mui)
+  - Formik-Yup
+  - React-Google-Charts
+  - React-DOM
+  - React-Calendar
+  - Tremor
+  - React-Scripts
+  - Redux-Persist
+  - Fullcalendar
+  - React-Hook-Form
 
-* Backend:
-- Node.js
-- JavaScript
-- MongoDB
-- Mongoose
-- Express.js
-- dotenv
-- cors
-- cookie-session
-- express-async-errors
-- morgan
-- multer
-- nodemailer
-- redoc-express
-- swagger-autogen
+- Backend:
+  - Node.js
+  - JavaScript
+  - MongoDB
+  - Mongoose
+  - Express.js
+  - dotenv
+  - cors
+  - cookie-session
+  - express-async-errors
+  - morgan
+  - multer
+  - nodemailer
+  - redoc-express
+  - swagger-autogen
   
 ## Project Details:
 Simple Appointment System Our online appointment system allows patients and doctors to connect more quickly and easily. With a simple appointment system, we facilitate efficient communication between patients and doctors.
@@ -63,16 +63,16 @@ Authentication and Authorization:
 - Authorization is implemented using React Router's security features.
   
 Project Structure:
-client: Frontend code
-src:
-1- components: React components
-2- pages: Application pages
-3- utils: Helper functions and constants
+* client: Frontend code
+* src:
+  * components: React components
+  * pages: Application pages
+  * utils: Helper functions and constants
 
-server: Backend code
-1- controllers: MongoDB operations and business logic
-2- models: MongoDB schemas
-3- routes: API routes
+* server: Backend code
+  * controllers: MongoDB operations and business logic
+  * models: MongoDB schemas
+  * routes: API routes
 
 ### Project Gif:
 ![Project Snapshot](appointments.gif)
