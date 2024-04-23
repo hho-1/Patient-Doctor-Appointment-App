@@ -75,4 +75,4 @@ Project Structure:
   * routes: API routes
 
 ### Project Gif:
-![Project Snapshot](appointments.gif)
+![Project Snapshot](project's promo.mp4)
