@@ -80,7 +80,7 @@ app.use(require('./src/routes'))
 
 /* ------------------------------------------------------- */
 
-// errorHandler:
+//errorHandler:
 app.use(require('./src/middlewares/errorHandler'))
 
 // RUN SERVER:
